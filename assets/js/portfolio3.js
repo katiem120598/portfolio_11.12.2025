@@ -1,8 +1,16 @@
 let projectsData = null;
 let pageFlip = null;
+
 let isMobileView = false;
 
 let lastIsMobileView = null;
+
+const pageBackgrounds = [
+    'assets/images/shrinkwrap.png',
+    'assets/images/sparkles.png',
+    'assets/images/web_apps.png'
+    // add more if you want
+];
 
 async function loadProjects() {
     try {
@@ -41,26 +49,35 @@ function loadBook(projects) {
 function createFlipbook(projects) {
     const flipbookContainer = document.getElementById('flipbook');
     if (!flipbookContainer) return;
-    
+
     flipbookContainer.innerHTML = '';
     flipbookContainer.removeAttribute('style');
-    
+
+    // cover
     flipbookContainer.appendChild(createCoverPage());
-    
+
     const projectsPerPage = 3;
+    let pageIndex = 0; // only counts project pages
+
     for (let i = 0; i < projects.length; i += projectsPerPage) {
         const pageProjects = projects.slice(i, i + projectsPerPage);
-        flipbookContainer.appendChild(createProjectPage(pageProjects));
+        flipbookContainer.appendChild(createProjectPage(pageProjects, pageIndex));
+        pageIndex++;
     }
-    
+
+    // back cover
     flipbookContainer.appendChild(createBackCoverPage());
-    
+
     initializePageFlip();
 }
 
+
+
+
 function createCoverPage() {
     const page = document.createElement('div');
-    page.className = 'page page-hard';
+    page.className = 'page page-hard page-cover';
+    
     page.innerHTML = `
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: white;">
             <h1 style="font-family: 'girlypop', sans-serif; font-size: 3rem; margin: 20px 0;">
@@ -74,21 +91,25 @@ function createCoverPage() {
 
 function createBackCoverPage() {
     const page = document.createElement('div');
-    page.className = 'page page-hard';
+    page.className = 'page page-hard page-back';    
     return page;
 }
 
-function createProjectPage(projects) {
+function createProjectPage(projects, pageIndex) {
     const page = document.createElement('div');
     page.className = 'page';
-    
+
+    // assign a background class based on page index
+    const bgClassIndex = pageIndex % 3; // 3 background variations (0,1,2)
+    page.classList.add(`page-bg-${bgClassIndex}`);
+
     const pageContent = document.createElement('div');
     pageContent.className = 'page-content';
-    
+
     projects.forEach(project => {
         const item = document.createElement('div');
         item.className = 'scrapbook-item';
-        
+
         item.innerHTML = `
             <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
             <h3>${project.title}</h3>
@@ -97,47 +118,33 @@ function createProjectPage(projects) {
                 ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
             </div>
         `;
-        
-        projects.forEach(project => {
-            const item = document.createElement('div');
-            item.className = 'scrapbook-item';
-        
-            item.innerHTML = `
-                <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-                <div class="project-tags">
-                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
-                </div>
-            `;
-        
-            // prevent page flip when interacting with the project card
-            ['pointerdown', 'mousedown', 'touchstart'].forEach(evtType => {
-                item.addEventListener(evtType, (e) => {
-                    e.stopPropagation();
-                });
-            });
-        
-            item.addEventListener('click', (e) => {
-                e.stopPropagation();           // don't let PageFlip see this click
-                openProjectModal(project);     // only open modal
-            });
-        
-            pageContent.appendChild(item);
+
+        // prevent flip when clicking the project card
+        ['pointerdown', 'mousedown', 'touchstart'].forEach(evtType => {
+            item.addEventListener(evtType, (e) => e.stopPropagation());
         });
-        
+
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openProjectModal(project);
+        });
+
         pageContent.appendChild(item);
     });
-    
+
+    // pad layout to always have 3 slots
     while (pageContent.children.length < 3) {
         const emptyItem = document.createElement('div');
         emptyItem.style.visibility = 'hidden';
         pageContent.appendChild(emptyItem);
     }
-    
+
     page.appendChild(pageContent);
     return page;
 }
+
+
+
 
 function checkMobileView() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -57,7 +57,8 @@
 }
 
 .page {
-    background: white;
+    /* no background-image here */
+    background-color: transparent; /* or white if you want */
     padding: 30px;
     box-sizing: border-box;
     display: flex;
@@ -386,4 +387,44 @@
     .book-btn:hover {
         transform: none;
     }
+}
+
+/* per-page backgrounds */
+.page-bg-0 {
+    background-image: url('../images/shrinkwrap.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.page-bg-1 {
+    background-image: url('../images/sparkles.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.page-bg-2 {
+    background-image: url('../images/web_apps.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* FRONT COVER */
+.page-cover {
+    background-image: url('../images/portfolio_cover.png');
+    background-size: 100% 100%;
+    /* show full image */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;       /* optional backdrop */
+}
+
+/* BACK COVER */
+.page-back {
+    background-image: url('../images/backcover_bg.png'); /* CHANGE THIS TOO */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
 }
