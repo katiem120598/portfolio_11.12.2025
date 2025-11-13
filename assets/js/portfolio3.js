@@ -98,7 +98,34 @@ function createProjectPage(projects) {
             </div>
         `;
         
-        item.addEventListener('click', () => openProjectModal(project));
+        projects.forEach(project => {
+            const item = document.createElement('div');
+            item.className = 'scrapbook-item';
+        
+            item.innerHTML = `
+                <img src="${project.thumbnail}" alt="${project.title}" loading="lazy">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="project-tags">
+                    ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+        
+            // prevent page flip when interacting with the project card
+            ['pointerdown', 'mousedown', 'touchstart'].forEach(evtType => {
+                item.addEventListener(evtType, (e) => {
+                    e.stopPropagation();
+                });
+            });
+        
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();           // don't let PageFlip see this click
+                openProjectModal(project);     // only open modal
+            });
+        
+            pageContent.appendChild(item);
+        });
+        
         pageContent.appendChild(item);
     });
     
@@ -154,25 +181,26 @@ function createMobileView(projects) {
 function initializePageFlip() {
     const flipbookContainer = document.getElementById('flipbook');
     const pages = flipbookContainer.querySelectorAll('.page');
-    
     if (pages.length === 0) return;
-    
+
     flipbookContainer.style.display = '';
     document.querySelector('.book-controls').style.display = 'flex';
-    
-    const containerWidth = document.getElementById('book-wrapper').offsetWidth;
-    const containerHeight = document.getElementById('book-wrapper').offsetHeight;
-    const pageWidth = Math.min(500, containerWidth * 0.4);
-    const pageHeight = Math.min(700, containerHeight * 0.9);
-    
+
+    const wrapper = document.getElementById('book-wrapper');
+    const wrapperWidth = wrapper.offsetWidth;
+
+    // one page = half the book width
+    const pageWidth = Math.max(320, Math.min(wrapperWidth / 2, 600));
+    const pageHeight = pageWidth * 1.4; // tweak ratio if you want taller/shorter
+
     pageFlip = new St.PageFlip(flipbookContainer, {
         width: pageWidth,
         height: pageHeight,
         size: 'stretch',
         minWidth: 300,
-        maxWidth: 500,
-        minHeight: 400,
-        maxHeight: 700,
+        maxWidth: pageWidth,
+        minHeight: 300,
+        maxHeight: pageHeight,
         maxShadowOpacity: 0.5,
         showCover: true,
         mobileScrollSupport: true,
@@ -183,10 +211,9 @@ function initializePageFlip() {
         drawShadow: true,
         flippingTime: 1000
     });
-    
+
     pageFlip.loadFromHTML(pages);
     updatePageInfo();
-    
     pageFlip.on('flip', updatePageInfo);
 }
 
