@@ -64,17 +64,62 @@
             </a>
             
             <!-- Filler Images -->
-            <a href="https://katie-mueller.com/girlypop.html" target="_blank" class="filler-container" data-top="15" data-left="9" data-width="32" data-height="76">
-                <img src="assets/images/hard_reset_wbackground.png" class="filler-image" alt="Description of the image">
+            <a class="filler-container"
+            data-project-id="hard-reset"
+            data-project-link="https://katie-mueller.com/girlypop.html"
+            data-project-desc="test description"
+            data-project-title="hard reset: <br>dancing through the noise"
+            data-project-modal-img="assets/images/hard_reset.png" 
+            data-project-modal-alt="hard reset preview" 
+            data-project-modal-scale="50"           
+            data-top="15" 
+            data-left="9" 
+            data-width="32" 
+            data-height="76">
+                <img src="assets/images/hard_reset_wbackground.png" class="filler-image">
             </a>
-            <a href="drawingapp copy.html" target="_blank" class="filler-container" data-top="14" data-left="56" data-width="40" data-height="40">
+            <a 
+            data-project-id="drawing-app"
+            data-project-title = "drawing app"
+            data-project-desc="placeholder"
+            data-project-link = "drawingapp copy.html" 
+            data-project-modal-img="assets/images/drawing_app.png"
+            data-project-modal-alt="drawing app preview"
+            data-project-modal-scale="50"
+            class="filler-container" 
+            data-top="14" 
+            data-left="56" 
+            data-width="40" 
+            data-height="40">
                 <img src="assets/images/drawing_app_wbackground.png" class="filler-image" alt="Description of the image">
             </a>
-            <a href="flowjockey.html" target="_blank" class="filler-container" data-top="54" data-left="56" data-width="36" data-height="41">
+            <a href=
+            target="_blank" 
+            data-project-id="flow-jockey"
+            data-project-title = "flowJockey"
+            data-project-desc="placeholder"
+            data-project-link = "flowjockey.html" 
+            data-project-modal-img="assets/images/flow_jockey.png"
+            data-project-modal-alt="flowJockey preview"
+            data-project-modal-scale="80"
+            class="filler-container" 
+            data-top="54" 
+            data-left="56" 
+            data-width="36" 
+            data-height="41">
                 <img src="assets/images/flow_jockey_wbackground.png" class="filler-image" alt="Description of the image">
             </a>
         </div>
     </div>
+
+    <!-- Modal element -->
+    <dialog id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </dialog>
+
 
     <!-- Scripts -->
     <script src="assets/js/girlypop.js"></script>
@@ -83,6 +128,7 @@
     <script src="assets/js/ref_image.js"></script>
     <script src="assets/js/filler_links.js"></script>
     <script src = "assets/js/preload.js"></script>
+    <script src = "assets/js/popup.js"></script>
 
 </body>
 </html>
