@@ -556,23 +556,23 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
 }
 
 .filler-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Adjust this based on desired scaling behavior */
+    object-fit: fill; /* Adjust this based on desired scaling behavior */
     position: absolute; /* Ensure it stays within its container */
     top: 0;
     left: 0;
-}
-
-.filler-container:hover .hover-text {
-    opacity: 1; /* Make the hover text visible when the container is hovered */
+    z-index:100;
 }
 
 .filler-image.hovered {
-    filter: grayscale(100%) saturate(50%) brightness(20%);
+    /*filter: grayscale(100%) saturate(50%) brightness(20%);*/
+    transform: translateY(-5px) rotate(var(--card-rotate, -5deg));
+    cursor: url("../images/click_icon.png")10 10, pointer;
 }
 
 

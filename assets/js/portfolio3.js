@@ -5,12 +5,6 @@ let isMobileView = false;
 
 let lastIsMobileView = null;
 
-const pageBackgrounds = [
-    'assets/images/shrinkwrap.png',
-    'assets/images/sparkles.png',
-    'assets/images/web_apps.png'
-    // add more if you want
-];
 
 async function loadProjects() {
     try {
@@ -100,7 +94,7 @@ function createProjectPage(projects, pageIndex) {
     page.className = 'page';
 
     // assign a background class based on page index
-    const bgClassIndex = pageIndex % 3; // 3 background variations (0,1,2)
+    const bgClassIndex = pageIndex % 5; // 3 background variations (0,1,2)
     page.classList.add(`page-bg-${bgClassIndex}`);
 
     const pageContent = document.createElement('div');
@@ -133,7 +127,7 @@ function createProjectPage(projects, pageIndex) {
     });
 
     // pad layout to always have 3 slots
-    while (pageContent.children.length < 3) {
+    while (pageContent.children.length < 5) {
         const emptyItem = document.createElement('div');
         emptyItem.style.visibility = 'hidden';
         pageContent.appendChild(emptyItem);
