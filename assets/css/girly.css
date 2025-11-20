@@ -698,7 +698,7 @@ html, body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 24px;
-    background: #ffa7e9;
+    background: #a911b9;
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -707,13 +707,36 @@ html, body {
 }
 
 .modal-body a:hover {
-    background: #ff8fd9;
+    background: #a911b9;
 }
 
 #modal-body,
 #modal-body * {
     text-align: center;
 }
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0 20px 0;
+}
+
+.skill-tag {
+    background: #ffa7e9; /* your pink */
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px; /* pill shape */
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: Work Sans, sans-serif;  /* 🔹 match button font */
+    letter-spacing: .004em;              /* optional: match global links */
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
 
 @media (max-width: 600px) {
     .modal-content {

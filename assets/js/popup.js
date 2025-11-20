@@ -7,12 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.filler-container').forEach(item => {
         const title = item.dataset.projectTitle || "project";
-        const desc = item.dataset.projectDesc || "";
-        const link = item.dataset.projectLink || null;
+        const desc  = item.dataset.projectDesc  || "";
+        const link  = item.dataset.projectLink  || null;
 
-        const modalImgSrc = item.dataset.projectModalImg || null;
-        const modalImgAlt = item.dataset.projectModalAlt || "";
-        const modalScale = item.dataset.projectModalScale || null;
+        // 🔹 skills now defined *per item*
+        const skills = item.dataset.projectSkills
+            ? item.dataset.projectSkills.split(',').map(s => s.trim())
+            : [];
+
+        const modalImgSrc = item.dataset.projectModalImg  || null;
+        const modalImgAlt = item.dataset.projectModalAlt  || "";
+        const modalScale  = item.dataset.projectModalScale || null;
 
         const fallbackImg = item.querySelector('img');
         const fallbackSrc = fallbackImg?.getAttribute('src');
@@ -25,15 +30,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="modal-body">
                     <h2>${title}</h2>
 
-                    <p>${desc}</p>
+                    ${
+                        skills.length
+                        ? `<div class="skills-list">
+                               ${skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+                           </div>`
+                        : ''
+                    }
+
+                    <p style="margin: 20px auto;">${desc}</p>
 
                     ${
                         modalImgSrc
-                        ? `<img src="${modalImgSrc}" 
-                                alt="${modalImgAlt}" 
+                        ? `<img src="${modalImgSrc}"
+                                alt="${modalImgAlt}"
                                 style="width:${modalScale ? modalScale + '%' : '100%'}; height:auto; display:block; margin:20px auto;">`
-                        : (fallbackSrc 
-                            ? `<img src="${fallbackSrc}" 
+                        : (fallbackSrc
+                            ? `<img src="${fallbackSrc}"
                                     alt="${fallbackAlt}"
                                     style="width:${modalScale ? modalScale + '%' : '100%'}; height:auto; display:block; margin:20px auto;">`
                             : ''
@@ -43,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${
                         link
                         ? `<a href="${link}" target="_blank" rel="noopener noreferrer">
-                                open full project →
+                               open full project →
                            </a>`
                         : ''
                     }
@@ -55,10 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ✅ you were missing this:
-    closeBtn?.addEventListener('click', () => {
-        modal.close();
-    });
+    // close behaviors
+    closeBtn?.addEventListener('click', () => modal.close());
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal) modal.close();
