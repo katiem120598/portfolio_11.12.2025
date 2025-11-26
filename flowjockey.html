@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <title>Canvas drawing</title>
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="DrawingApp/css/styles.css">
+  <link rel="stylesheet" href="assets/css/projectPage.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     .widget-container {
@@ -59,7 +59,7 @@
     }
 
     body {
-      background-color: pink;
+      background-color: rgb(0, 0, 0);
     }
 
   </style>
@@ -75,19 +75,19 @@
             <span id="logo-text" class="header centered-text">katie <3</span>
           </a>
         </div>
-        <p class = "centered-text" style = "font-size:15px; color: white; z-index: 100000;">visit <a target = "_blank" href = https://draw-flowjockey.glitch.me/>https://draw-flowjockey.glitch.me/</a> to draw on another device</p>
+        <p class = "centered-text" style = "font-size:15px; color: white; z-index: 100000;">visit <a target = "_blank" href = https://katiem120598.github.io/flowJockey_draw/>https://katiem120598.github.io/flowJockey_draw/</a> to draw on another device</p>
       </navbarog>
     </div>
 
     <div class="widget-container">
       <!-- Display widget -->
       <div class="widget display-widget">
-        <iframe id="display-iframe" src="https://display-flowjockey.glitch.me"></iframe>
+        <iframe id="display-iframe" src="https://katiem120598.github.io/flowJockey_display/"></iframe>
       </div>
 
       <!-- Moderate widget -->
       <div class="widget moderate-widget">
-        <iframe id="moderate-iframe" src="https://perform-flowjockey.glitch.me"></iframe>
+        <iframe id="moderate-iframe" src="https://katiem120598.github.io/flowJockey_perform/"></iframe>
       </div>
 
       <!-- Draw widget (loaded last with JavaScript) -->
@@ -98,7 +98,7 @@
     </div>
     <!-- Add body text beneath the iframes-->
 
-    <script src="DrawingApp/js/menu.js"></script>
+    <script src="assets/js/projectMenu.js"></script>
     <script src="assets/js/girlypop.js"></script>
 
     <!-- JavaScript to delay loading of the draw iframe -->
@@ -107,12 +107,12 @@
       window.onload = function() {
         // Load moderate iframe after 1 second
         setTimeout(function(){
-          document.getElementById('moderate-iframe').src = "https://perform-flowjockey.glitch.me";
+          document.getElementById('moderate-iframe').src = "https://katiem120598.github.io/flowJockey_perform/";
         }, 1000); // 1 second delay for moderate-iframe
 
         // Load draw iframe after another 1 second (2 seconds in total)
         setTimeout(function() {
-          document.getElementById('draw-iframe').src = "https://draw-flowjockey.glitch.me";
+          document.getElementById('draw-iframe').src = "https://katiem120598.github.io/flowJockey_draw/";
         }, 1000); // 2 seconds delay for draw-iframe
       };
 
