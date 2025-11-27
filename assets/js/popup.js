@@ -40,18 +40,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     <p style="margin: 20px auto;">${desc}</p>
 
+
                     ${
-                        modalImgSrc
-                        ? `<img src="${modalImgSrc}"
-                                alt="${modalImgAlt}"
-                                style="width:${modalScale ? modalScale + '%' : '100%'}; height:auto; display:block; margin:20px auto;">`
-                        : (fallbackSrc
-                            ? `<img src="${fallbackSrc}"
-                                    alt="${fallbackAlt}"
+                        item.dataset.projectModalVideo
+                        ? `
+                            <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin:20px 0;">
+                                <iframe 
+                                    src="${item.dataset.projectModalVideo}"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                    style="position:absolute; top:0; left:0; width:100%; height:100%;">
+                                </iframe>
+                            </div>
+                        `
+                        : (
+                            modalImgSrc
+                            ? `<img src="${modalImgSrc}"
+                                    alt="${modalImgAlt}"
                                     style="width:${modalScale ? modalScale + '%' : '100%'}; height:auto; display:block; margin:20px auto;">`
-                            : ''
+                            : (fallbackSrc
+                                ? `<img src="${fallbackSrc}"
+                                        alt="${fallbackAlt}"
+                                        style="width:${modalScale ? modalScale + '%' : '100%'}; height:auto; display:block; margin:20px auto;">`
+                                : ''
+                            )
                         )
                     }
+
+
 
                     ${
                         link

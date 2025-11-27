@@ -736,7 +736,9 @@ html, body {
     white-space: nowrap;
 }
 
-
+#modal-body p {
+    text-align: left !important;
+}
 
 @media (max-width: 600px) {
     .modal-content {
