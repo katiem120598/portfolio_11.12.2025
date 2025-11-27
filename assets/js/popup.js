@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = item.dataset.projectTitle || "project";
         const desc  = item.dataset.projectDesc  || "";
         const link  = item.dataset.projectLink  || null;
+        const playlink  = item.dataset.projectPlaylink  || null;
 
         // 🔹 skills now defined *per item*
         const skills = item.dataset.projectSkills
@@ -74,6 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         link
                         ? `<a href="${link}" target="_blank" rel="noopener noreferrer">
                                open full project →
+                           </a>`
+                        : ''
+                    }
+                    ${
+                        playlink
+                        ? `<a href="${playlink}" target="_blank" rel="noopener noreferrer">
+                               try it out !!! →
                            </a>`
                         : ''
                     }
