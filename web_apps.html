@@ -83,12 +83,23 @@
             <div 
             data-project-id="nova-tats"
             data-project-title = "nova tats"
-            data-project-desc="placeholder"
-            data-project-link = "https://nova-tats.com/BOOKING-FORM" 
+            data-project-desc="Ny first client work!!! 
+            For this tattoo artist client, I designed and developed a fully custom booking system on a Cargo-hosted website, integrating several Google Cloud tools to automate his workflow.
+            The form collects all required appointment details - personal info, tattoo style (flash or custom), reference images, size, placement, availability, and preferred city - and integrates Google Maps Places Autocomplete to intelligently suggest and auto-fill location fields. 
+            For clients who choose a city outside the artist’s three main locations, the form generates an interactive Google Map that displays their exact location along with a visualized travel radius so the artist and clients can quickly understand how far they’re willing to travel. 
+            The system ensures accuracy, reduces friction for clients, and standardizes all submission data.
+
+            <br><br>On the backend, I created an automated workflow using Google Apps Script. 
+            When a client uploads reference images, the script processes each file, saves it into a structured Google Drive folder, and logs the booking data in a connected Google Sheet. 
+            The sheet includes an auto-generated link pointing to each saved reference image for easy access. 
+            I also built an internal results page that displays a live heat map of all booking submissions using the Google Maps API, letting the artist see geographic trends, client clusters, and travel patterns at a glance. 
+            Overall, the project combined frontend UX, custom JavaScript, third-party APIs, and automated Google Workspace integrations to create a seamless booking and visualization system tailored to a high-volume tattoo artist."
+            data-project-link = "https://nova-tats.com/BOOKING-FORM"
+            data-project-linktitle = "go to booking form →" 
             data-project-modal-img="assets/images/nova_tats.png"
             data-project-modal-alt="nova tats preview"
             data-project-modal-scale="80"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-skills="HTML/CSS/JavaScript, Google Apps Script, Google Maps API, Google Drive API, Google Sheets API, REST APIs, Cargo"
             class="filler-container" 
             data-top="40" 
             data-left="59" 
@@ -97,14 +108,27 @@
                 <img src="assets/images/nova_tats_wbackground.png" class="filler-image" alt="Description of the image">
             </div>
             <div 
-            data-project-id="flowjockey"
-            data-project-title = "flowjockey"
-            data-project-desc="placeholder"
-            data-project-link = "https://katie-mueller.com/flowjockey.html" 
-            data-project-modal-img="assets/images/flow_jockey.png"
-            data-project-modal-alt="flowjockey preview"
-            data-project-modal-scale="80"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-id="flow-jockey"
+            data-project-title = "flowJockey"
+            data-project-desc="flowJockey is an interactive, multi-client drawing system that transforms audience input into audio-reactive visuals. 
+            I built it as a way to let people co-create a shared visual environment, whether during a performance, a party, or an installation. 
+            Participants can open the drawing link on any device, sketch directly on their screen, and instantly see their shapes appear on the central display. 
+            A custom Node WebSocket server synchronizes all clients in real time, assigns each participant a unique grid cell, and streams their drawings into the visualization engine. 
+            The system includes three display modes (grid, party, and color), each driven by FFT analysis of incoming audio—bass, mid, and treble frequencies.
+            The different display modes dynamically distort, move, or recolor every user-generated shape.
+
+            <br><br>Beyond being fun and chaotic, flowJockey is useful as a tool for audience engagement, generative visual performance, and participatory art. 
+            It removes the barrier between artist and viewer by turning everyone into a contributor. 
+            The ability of the visuals to react to sound - whether a microphone feed or a pre-loaded track - allows flowJockey to adapt to concerts, DJ sets, exhibitions, or ambient environments.
+            In addition, the simplicity of the sliders for the moderation screen allows the moderator to easily adjust the visual intensity and behavior on the fly, tailoring the experience to the energy of the crowd without stress. 
+            I designed it to be flexible, scalable (25+ simultaneous drawers), and portable: everything runs in the browser, requires no downloads, and can be embedded into any event setup. 
+            flowJockey becomes a living, evolving image of the crowd itself, capturing how people draw, move, and interact with the space in real time."
+            data-project-link = "flowjockey.html" 
+            data-project-linktitle = "try it out !!! →"
+            data-project-modal-video="https://www.youtube.com/embed/0QbZ1kK8HBE?si=mxxP_uxmr6o8MYTi"
+            data-project-modal-alt="flowJockey preview"
+            data-project-modal-scale="100"
+            data-project-skills="p5.js, Node.js, WebSockets, HTML/CSS/JavaScript, Web Audio API, Render.com"
             class="filler-container" 
             data-top="8" 
             data-left="5" 
@@ -115,12 +139,20 @@
             <div
             data-project-id="drawing-app"
             data-project-title = "drawing app"
-            data-project-desc="placeholder"
-            data-project-link = "https://katie-mueller.com/drawingapp%20copy.html"
-            data-project-modal-img="assets/images/drawing_app.png"
+            data-project-desc="This drawing app is an experimental sketching environment built in p5.js where every drawn shape becomes an autonomous, living object. 
+            Users draw freeform “blobs” directly on the canvas, and the app converts each stroke into a closed geometric shape with its own velocity, deformation behavior, and collision logic. 
+            Each shape bounces off the canvas edges, wiggles organically using randomized oscillation factors, and reacts to nearby shapes through a custom overlap-detection system that pushes intersecting blobs apart. 
+            The user can dynamically change the background color, delete shapes on click, or retroactively fill any shape with a chosen color.
+
+            <br><br>Under the hood, the system maintains parallel arrays of geometry, motion vectors, scale oscillators, and color assignments to give every shape independent behavior. 
+            A custom point-in-polygon algorithm enables accurate hit-testing, while a frame-based deformation engine produces the soft, amoeba-like morphing effect. 
+            By combining drawing with physics and procedural animation, the app turns simple sketches into a moving ecosystem of interacting forms, making it useful as a tool for visual experimentation, creative play, or generative art prototyping."
+            data-project-link = "drawingapp.html" 
+            data-project-linktitle = "try it out !!! →"
+            data-project-modal-video="https://www.youtube.com/embed/yV0Wu_lu7Cs?si=AbavLpyqSNYE4tQr"
             data-project-modal-alt="drawing app preview"
             data-project-modal-scale="50"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-skills="p5.js, HTML/CSS/JavaScript, computational geometry, procedural animation"
             class="filler-container" 
             data-top="7" 
             data-left="56" 
