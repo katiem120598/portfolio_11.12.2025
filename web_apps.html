@@ -83,7 +83,7 @@
             <div 
             data-project-id="nova-tats"
             data-project-title = "nova tats"
-            data-project-desc="Ny first client work!!! 
+            data-project-desc="My first client work!!! 
             For this tattoo artist client, I designed and developed a fully custom booking system on a Cargo-hosted website, integrating several Google Cloud tools to automate his workflow.
             The form collects all required appointment details - personal info, tattoo style (flash or custom), reference images, size, placement, availability, and preferred city - and integrates Google Maps Places Autocomplete to intelligently suggest and auto-fill location fields. 
             For clients who choose a city outside the artist’s three main locations, the form generates an interactive Google Map that displays their exact location along with a visualized travel radius so the artist and clients can quickly understand how far they’re willing to travel. 
@@ -163,12 +163,21 @@
             <div
             data-project-id="sound-waves"
             data-project-title = "sound waves"
-            data-project-desc="placeholder"
-            data-project-link = "shader.html" 
+            data-project-desc="For this web app, I built an interactive, audio-reactive shader experience using p5.js, WebGL, and custom GLSL fragment/vertex shaders. 
+            Users can play notes of the C-major scale directly on their keyboard (keys 1–8), and each keystroke triggers a dedicated p5 oscillator that generates the corresponding frequency. 
+            I wrote a full note-handling system that creates smooth amplitude envelopes: each note gently fades in, sustains for a custom adjustable duration, and then fades out while still passing timing data (start times, durations, and activation flags) into the shader through dynamic uniforms. 
+            The user can also modify the duration of notes in real time using the arrow keys, and the UI updates the displayed value.
+
+            <br><br>On the rendering side, the sketch uses WebGL and a custom shader pair to interpret the played notes as visual triggers. 
+            When a note is active, the shader receives its activation state and timing through uniforms, allowing the fragment shader to animate the screen texture based on active frequencies. 
+            The entire system runs in a dynamic canvas sized to the viewport and is wrapped inside your portfolio’s custom UI. 
+            Altogether, <i>Sound Waves</i> blends real-time audio synthesis, shader programming, and interactive UI design into a compact audiovisual instrument inside the browser." 
+            data-project-link = "shader.html"
+            data-project-linktitle = "try it out !!! →"
             data-project-modal-video="https://www.youtube.com/embed/uvNePAh04wA?si=mXm2iTwE1Mx_Aep1"
             data-project-modal-alt="sound waves preview"
             data-project-modal-scale="50"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-skills="p5.js, WebGL, GLSL, HTML/CSS/JavaScript, Web Audio API, p5.sound"
             class="filler-container" 
             data-top="58" 
             data-left="5" 
