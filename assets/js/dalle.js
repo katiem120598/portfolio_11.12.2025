@@ -4,7 +4,7 @@ const imgContainer=document.getElementById('image-container');
 const reqStatus = document.getElementById('request-status');
 //read in the contents of api_key.txt
 var apiKey = "";
-fetch('../api_key.txt')
+fetch('../assets/txt/api_key.txt')
     .then(response => response.text())
     .then(text => apiKey = text);
 
