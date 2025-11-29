@@ -53,10 +53,10 @@
             <a href="web_apps.html">
                 <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
-            <a href="digital_fabrication.html">
-                <img src="assets/images/digital_fab.png" class="dynamic-image dependent-image" alt="Dependent Image">
+            <a href="creative_coding.html">
+                <img src="assets/images/creative_coding.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
-            <a href="interactive_exhibits.html">
+            <a href="installations.html">
                 <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
             <a href="architecture.html">
@@ -116,12 +116,19 @@
             <div
             data-project-id="led-array"
             data-project-title = "led pixel array!!"
-            data-project-desc="placeholder"
-            data-project-link = "ps70_final.html" 
-            data-project-modal-img="assets/images/led_array.png"
+            data-project-desc="I developed a network-addressable LED pixel array system using an ESP32 running WLED, configured in both AP mode and local Wi-Fi mode for testing. 
+            The LED strip was mapped as a 2D pixel grid inside WLED, allowing each diode to be addressed by index. 
+            I built a TouchDesigner to WLED control pipeline where TouchDesigner generated real-time RGB values based on audio input, FFT analysis, and glitch-processing operators. 
+            These values were formatted into network packets and sent through a Python DAT to the ESP32’s WLED JSON/UDP interfaces. 
+            The system dynamically pushed per-pixel color data at runtime, overriding WLED’s onboard presets and enabling fully custom animations.
+
+            <br><br>To support stable communication, I worked through IP configuration, AP network inconsistencies, and LED power management, ultimately establishing a reliable method for sending live data frames from TouchDesigner to WLED. 
+            I implemented a mapping workflow using DAT tables and CHOP channels to convert TouchDesigner’s internal coordinates into LED indices, ensuring consistent pixel-to-grid alignment. 
+            This project gave me hands-on experience with addressable LEDs, network protocols, real-time visual systems, and hardware–software integration, and serves as a foundation for scaling to multi-device, multi-display installations."
+            data-project-modal-video="https://youtube.com/embed/lgTu_4RnfmI?si=AX2FNimP9HcEOvm8"
             data-project-modal-alt="led pixel array preview"
             data-project-modal-scale="50"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-skills="ESP32 (WLED firmware), TouchDesigner, Python, UDP/JSON API control for WLED, LED pixel mapping, network configuration, audio-reactive visuals"
             class="filler-container" 
             data-top="4" 
             data-left="59.5" 
@@ -163,13 +170,23 @@
             </div>
             <div
             data-project-id="hard-reset"
-            data-project-title = "hard reset:<br>dancing through the noise"
-            data-project-desc="placeholder"
-            data-project-link = "http://127.0.0.1:5500/ps70_week8.html" 
-            data-project-modal-img="assets/images/hard_reset.png"
-            data-project-modal-alt="hard reset preview"
-            data-project-modal-scale="50"
-            data-project-skills="TouchDesigner, audio-reactive shaders, CRT routing"
+            data-project-desc="<i>Hard Reset: Dancing Through the Noise</i> is an audiovisual installation and one-night gathering that used glitch as both medium and method for rethinking public assembly in an era defined by algorithmic fragmentation. 
+            Drawing from Hannah Arendt’s notion that a public is formed whenever people “see what we see and hear what we hear,” the project asks what it means to make a shared reality when our digital lives are increasingly personalized, polarized, and averaged. 
+            Glitch becomes the counterforce: an interruption of clean algorithmic legibility, a refusal of seamless interfaces, and an opportunity to locate joy, presence, and relationality in the midst of uncertainty, aligning with Adrienne Maree Brown’s concept of pleasure activism.
+            Inspired by the lineage of Rosa Menkman, Nam June Paik, and early net-art interventions, <i>Hard Reset</i> reframes malfunction as meaning-making. 
+            Error becomes a site of collective verification: a place where people can witness themselves and each other in the same distorted frame.
+
+            <br><br>The installation translated movement and sound into a real-time ecosystem of pixel sorting, databending, cache-to-live comparisons, and generative AI transitions, all displayed across CRT televisions and projectors. 
+            Visuals glitched harder as the crowd moved more, making dancing not ornamental but instrumental, serving as an embodied trigger for visibility. 
+            When no one moved, the screens fell to static, underscoring the project’s central claim: there is no public without participation. 
+            A last-minute venue change, the collapse of planned lighting elements, and an unexpected line-dancing segment introduced their own forms of glitch into the night, revealing the generative potential of disruption. 
+            What emerged was not just a party, but a temporary public assembled through noise, error, and collective pleasure. 
+            In an age of curated solitudes and algorithmically enforced sameness, Hard Reset positions glitch as a strategy for reorientation - an insistence that something new becomes possible when we dance through the noise rather than trying to escape it."
+            data-project-title="hard reset: <br>dancing through the noise"
+            data-project-modal-video="https://www.youtube.com/embed/upJgoGUzyqY?si=mL91Rmk5wvYZFdzz"
+            data-project-modal-alt="hard reset preview" 
+            data-project-modal-scale="50" 
+            data-project-skills="TouchDesigner, Python, GLSL shaders, CRT video routing, Stable Diffusion API, audio-reactive visuals, real-time video processing"          
             class="filler-container" 
             data-top="46" 
             data-left="62" 
