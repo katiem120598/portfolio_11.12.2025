@@ -6,8 +6,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Setup canvas
     const setupCanvas = () => {
-        canvas.width = referenceImage.naturalWidth;
-        canvas.height = referenceImage.naturalHeight;
+        canvas.width = referenceImage.naturalWidth * window.devicePixelRatio;
+        canvas.height = referenceImage.naturalHeight * window.devicePixelRatio;
         //ctx.drawImage(referenceImage, 0, 0, canvas.width, canvas.height);
     };
 

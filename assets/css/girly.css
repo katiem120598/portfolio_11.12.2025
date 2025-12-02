@@ -529,6 +529,11 @@ html, body {
 
 .reference-image{
     pointer-events: none;
+    transform: translate(9vw);
+    width: auto; 
+    height: auto; 
+    object-fit: contain; 
+    display: block; 
 }
 
 .hover-text {
@@ -749,4 +754,3 @@ html, body {
         font-size: 1.6rem;
     }
 }
-
