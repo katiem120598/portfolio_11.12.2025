@@ -1,3 +1,11 @@
+function loadNavbar() {
+    return fetch("navbar.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("navbar-placeholder").innerHTML = data;
+        });
+}
+
 function handleMenu() {
     const button = document.querySelector('.dropdown-button');
     const menu = document.querySelector('.navlist');
@@ -37,6 +45,11 @@ function handleMenu() {
         });
     });
 }
+
+loadNavbar().then(() => {
+    handleMenu();
+    window.addEventListener('resize', handleMenu);
+});
 
 // Call the function to initialize the menu behavior
 handleMenu();

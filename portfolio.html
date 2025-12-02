@@ -37,25 +37,7 @@
     <div id="preloader">
         <h1 id="loading-text">loading</h1>
     </div>
-    <navbar class = "navbar-contents">
-        <!--START: Navbar-->
-            <div class = "home-button">
-                <a href = "index.html#main">
-                    <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
-                    <span class = "home-button-text">katie <3</span> 
-                </a>
-            </div>
-    
-            <div>
-                <button class="dropdown-button menu-container" style = "display:block">&#9776;</button>
-                <ul class="navlist" style="display:none">
-                    <li><a href = "index.html">home</a></li>
-                    <li><a href="index.html#about">about</a></li>
-                    <li><a href="proceduraldesign.html">portfolio</a></li>
-                    <li><a href = "ps70.html">ps70</a></li>
-                </ul>
-            </div>
-    </navbar>
+    <div id = "navbar-placeholder"></div>
 
     <!-- START: Main -->
     <div id="main" class="pinkcontainer">
@@ -65,23 +47,23 @@
             <canvas id="reference-canvas" style="position: absolute; top: 0; left: 0; pointer-events:none;"></canvas>
 
             <!-- The Reference Image -->
-            <img src="assets/images/portfolio_cover.png" class="dynamic-image reference-image" alt="Portfolio Cover" style="z-index: 10000; pointer-events:none;">
+            <img src="assets/images/portfolio_cover.png" class="dynamic-image reference-image" alt="Reference Image" style="z-index: 10000; pointer-events:none;">
 
             <!-- Dependent Images -->
-            <a href="personal_favs.html">
-                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Personal Favorites" loading="lazy">
+            <a href="personal_favs.html" >
+                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
             <a href="web_apps.html">
-                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Web Apps" loading="lazy">
+                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
             <a href="creative_coding.html">
-                <img src="assets/images/digital_fab.png" class="dynamic-image dependent-image" alt="Digital Fabrication" loading="lazy">
+                <img src="assets/images/digital_fab.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
             <a href="installations.html">
-                <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Interactive Exhibits" loading="lazy">
+                <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
             <a href="architecture.html">
-                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Architecture" loading="lazy">
+                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Dependent Image">
             </a>
         </div>
     </div>
@@ -90,11 +72,12 @@
 
     <!-- START: Scripts -->
 
-    <script src="assets/js/girlypop.js" defer></script> 
-    <script src="assets/js/pinkexplode.js" defer></script> 
-    <script src="assets/js/menu_home.js" defer></script>
-    <script src="assets/js/ref_image.js" defer></script>
-    <script src="assets/js/preload.js" defer></script>
+    <script src = "assets/js/girlypop.js"></script> 
+    <script src = "assets/js/pinkexplode.js"></script> 
+    <script src = "assets/js/menu_all.js"></script>
+    <script src = "assets/js/ref_image.js"></script>
+    <script src = "assets/js/preload.js"></script>
+    
     
     <!-- END: Scripts -->
 
