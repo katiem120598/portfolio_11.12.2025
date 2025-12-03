@@ -2,15 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const preloader = document.getElementById("preloader");
     const loadingText = document.getElementById("loading-text");
     const pageKey = "hasVisited_" + window.location.pathname;
-    const startTime = performance.now(); // Track when loading starts
 
     // Check if the user has already visited this specific page
     const hasVisitedBefore = sessionStorage.getItem(pageKey);
 
     if (hasVisitedBefore) {
-        console.log(`âœ… ${window.location.pathname} has already been visited, skipping preloader and refresh.`);
-        preloader.style.display = "none"; // Hide preloader instantly
-        return; // Exit early to avoid animations and reload logic
+        preloader.style.display = "none";
+        return;
     }
 
     let dotCount = 0;
@@ -21,31 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
         loadingText.textContent = "loading" + ".".repeat(dotCount);
     }, 100);
 
+    // Wait for ALL images and resources to fully load
     window.onload = function () {
-        const loadTime = performance.now() - startTime; // Calculate total load time
-        console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-
-        // If load time is < 500ms, hide preloader immediately
-        if (loadTime < 1000) {
-            console.log("Fast load detected, skipping preloader...");
-            preloader.style.display = "none";
-            clearInterval(dotAnimation);
-            return;
-        }
-
-        // Remove preloader smoothly
+        // Stop the dot animation
         clearInterval(dotAnimation);
+        
+        // Add hidden class for fade-out transition
         preloader.classList.add("preloader-hidden");
 
         setTimeout(() => {
-            preloader.style.display = "none"; // Remove preloader from DOM
-            console.log("Preloader removed. Page is visible.");
-
-            // Mark this page as visited *before* triggering the refresh
+            preloader.style.display = "none";
+            // Mark this page as visited
             sessionStorage.setItem(pageKey, "true");
-
-            console.log(`ðŸ”„ Refreshing ${window.location.pathname} now after preloader disappears...`);
-            location.reload(); // Force a visible refresh only once
-        }, 500); // Smooth transition for preloader removal
+        }, 500);
     };
 });
