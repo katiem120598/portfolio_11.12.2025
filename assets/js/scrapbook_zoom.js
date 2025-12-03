@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const wrapper = document.querySelector(".scrapbook-zoom-wrapper");
     if (!wrapper) return;
+    
+    const pinkContainer = document.querySelector(".pinkcontainer");
 
     let scale = 1;
     let lastScale = 1;
@@ -15,20 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const MIN_SCALE = 1;
     const MAX_SCALE = 3;
     
-    // Get dependent images (tabs) to apply inverse transform during zoom
-    const dependentImages = document.querySelectorAll(".dependent-image");
-
-    function updateTabsTransform() {
-        // Apply inverse transform to tabs so they don't zoom with the scrapbook
-        const inverseScale = 1 / scale;
-        dependentImages.forEach(img => {
+    function updateOverflow() {
+        if (pinkContainer) {
             if (scale > 1) {
-                img.style.transform = `scale(${inverseScale})`;
-                img.style.transformOrigin = "left center";
+                pinkContainer.style.overflow = "auto";
             } else {
-                img.style.transform = "";
+                pinkContainer.style.overflow = "";
             }
-        });
+        }
     }
 
     function resetZoom() {
@@ -40,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lastTranslateY = 0;
         wrapper.style.transition = "transform 0.2s ease-out";
         wrapper.style.transform = "";
-        updateTabsTransform();
+        updateOverflow();
         setTimeout(() => {
             wrapper.style.transition = "";
         }, 200);
@@ -71,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function applyTransform() {
         wrapper.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
-        updateTabsTransform();
+        updateOverflow();
     }
 
     function clampTranslation() {
