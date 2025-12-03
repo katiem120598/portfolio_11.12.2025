@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dependentImages.forEach((image, index) => {
                     image.style.position = "absolute";
                     image.style.top = `${tabTop}px`;
-                    image.style.left = `${refOffsetLeft + newWidth + 3}px`;
+                    image.style.left = `${refOffsetLeft + newWidth}px`;
                     image.style.height = `${tabHeight}px`;
                     image.style.width = "auto";
                     image.style.zIndex = "200";
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 dependentImages.forEach((image, index) => {
                     image.style.position = "absolute";
                     image.style.top = `${tabTop}px`;
-                    image.style.left = `${refOffsetLeft + newWidth + 5}px`;
+                    image.style.left = `${refOffsetLeft + newWidth}px`;
                     image.style.height = `${tabHeight}px`;
                     image.style.width = "auto";
                     image.style.zIndex = "200";
