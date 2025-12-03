@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const wrapper = document.querySelector(".scrapbook-zoom-wrapper") || document.querySelector(".image-wrapper");
+    const wrapper = document.querySelector(".scrapbook-zoom-wrapper");
     if (!wrapper) return;
 
     let scale = 1;
@@ -14,6 +14,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const MIN_SCALE = 1;
     const MAX_SCALE = 3;
+
+    function resetZoom() {
+        scale = 1;
+        lastScale = 1;
+        translateX = 0;
+        translateY = 0;
+        lastTranslateX = 0;
+        lastTranslateY = 0;
+        wrapper.style.transition = "transform 0.2s ease-out";
+        wrapper.style.transform = "";
+        setTimeout(() => {
+            wrapper.style.transition = "";
+        }, 200);
+    }
+
+    window.addEventListener("orientationchange", function() {
+        resetZoom();
+    });
+
+    window.addEventListener("resize", function() {
+        if (scale > 1) {
+            resetZoom();
+        }
+    });
 
     function getDistance(touch1, touch2) {
         const dx = touch1.clientX - touch2.clientX;
