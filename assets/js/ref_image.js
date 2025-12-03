@@ -143,11 +143,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const numTabs = dependentImages.length;
             
             if (isPortrait) {
-                // Portrait: stack tabs vertically, sized to fit within scrapbook height
-                const totalTabSpace = newHeight * 0.7; // Use 70% of scrapbook height for tabs
-                const tabSpacing = 3;
-                const tabHeight = Math.min(50, (totalTabSpace - (tabSpacing * (numTabs - 1))) / numTabs);
-                let tabTop = refOffsetTop + (newHeight * 0.15);
+                // Portrait: stack tabs vertically, adjacent to each other, spanning most of scrapbook height
+                const totalTabHeight = newHeight * 0.88; // Use 88% of scrapbook height
+                const tabSpacing = 1; // Minimal spacing - nearly adjacent
+                const tabHeight = (totalTabHeight - (tabSpacing * (numTabs - 1))) / numTabs;
+                // Center the tab stack vertically on the scrapbook
+                let tabTop = refOffsetTop + (newHeight - totalTabHeight) / 2;
                 
                 dependentImages.forEach((image, index) => {
                     image.style.position = "absolute";
@@ -161,9 +162,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             } else {
                 // Landscape: similar to desktop positioning
-                const tabHeight = Math.max(40, 0.14 * newHeight);
-                const tabSpacing = 5;
-                let tabTop = refOffsetTop + (newHeight * 0.1);
+                const totalTabHeight = newHeight * 0.85;
+                const tabSpacing = 2;
+                const tabHeight = (totalTabHeight - (tabSpacing * (numTabs - 1))) / numTabs;
+                let tabTop = refOffsetTop + (newHeight - totalTabHeight) / 2;
                 
                 dependentImages.forEach((image, index) => {
                     image.style.position = "absolute";
