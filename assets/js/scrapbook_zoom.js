@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let isPinching = false;
 
     const MIN_SCALE = 1;
-    const MAX_SCALE = 3;
+    const MAX_SCALE = 2;
 
     function getDistance(touch1, touch2) {
         const dx = touch1.clientX - touch2.clientX;
@@ -100,6 +100,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 200);
             }
         }
+    });
+    
+    window.addEventListener("orientationchange", function() {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        wrapper.style.transition = "transform 0.2s ease-out";
+        applyTransform();
+        setTimeout(() => {
+            wrapper.style.transition = "";
+        }, 200);
     });
 
     wrapper.addEventListener("dblclick", function(e) {
