@@ -134,18 +134,37 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        let cumulativeHeight = -0.39 * newHeight;
-        let cumulativeWidth = 0;
+        if (isMobile) {
+            // On mobile, position tabs absolutely to the right of the reference image
+            const tabHeight = Math.max(40, 0.12 * newHeight);
+            const tabSpacing = 5;
+            let tabTop = refOffsetTop + (newHeight * 0.15);
+            
+            dependentImages.forEach((image, index) => {
+                image.style.position = "absolute";
+                image.style.top = `${tabTop}px`;
+                image.style.left = `${refOffsetLeft + newWidth + 5}px`;
+                image.style.height = `${tabHeight}px`;
+                image.style.width = "auto";
+                image.style.zIndex = "200";
+                
+                tabTop += tabHeight + tabSpacing;
+            });
+        } else {
+            // Desktop: use original relative positioning
+            let cumulativeHeight = -0.39 * newHeight;
+            let cumulativeWidth = 0;
 
-        dependentImages.forEach((image) => {
-            image.style.position = "relative";
-            image.style.top = `${cumulativeHeight + 0.05 * newHeight}px`;
-            image.style.left = `-${cumulativeWidth + 0.005 * newWidth}px`;
-            image.style.height = `${0.17 * newHeight}px`;
+            dependentImages.forEach((image) => {
+                image.style.position = "relative";
+                image.style.top = `${cumulativeHeight + 0.05 * newHeight}px`;
+                image.style.left = `-${cumulativeWidth + 0.005 * newWidth}px`;
+                image.style.height = `${0.17 * newHeight}px`;
 
-            cumulativeHeight += image.clientHeight + 0.002 * newHeight;
-            cumulativeWidth += image.clientWidth;
-        });
+                cumulativeHeight += image.clientHeight + 0.002 * newHeight;
+                cumulativeWidth += image.clientWidth;
+            });
+        }
 
         lastWidth = window.innerWidth;
         lastHeight = window.innerHeight;
