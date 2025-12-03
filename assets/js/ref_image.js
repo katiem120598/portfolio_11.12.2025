@@ -50,16 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
         const widthScale = viewportWidth / naturalWidth;
         const scale = Math.min(heightScale, widthScale);
 
-        const newWidth = naturalWidth * scale;
-        const newHeight = naturalHeight * scale;
+        let newWidth = naturalWidth * scale;
+        let newHeight = naturalHeight * scale;
 
         referenceImage.style.width = `${newWidth}px`;
         referenceImage.style.height = `${newHeight}px`;
+        
+        // Force a reflow to apply styles, then get ACTUAL rendered dimensions
+        // (CSS max-width/max-height constraints may reduce the size)
+        const actualRefBounds = referenceImage.getBoundingClientRect();
+        const actualWidth = actualRefBounds.width;
+        const actualHeight = actualRefBounds.height;
 
-        // On mobile, use zoomWrapper (which has viewport height) for centering calculations
-        // On desktop, use imageWrapper for positioning relative to the flex container
-        const containerForCentering = isMobile && zoomWrapper ? zoomWrapper : imageWrapper;
-        const wrapperBounds = containerForCentering ? containerForCentering.getBoundingClientRect() : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        const wrapperBounds = imageWrapper ? imageWrapper.getBoundingClientRect() : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
         
         let refOffsetTop, refOffsetLeft;
         
@@ -68,8 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
             const containerWidth = window.innerWidth;
             const containerHeight = window.innerHeight;
             
-            refOffsetLeft = (containerWidth - newWidth) / 2;
-            refOffsetTop = (containerHeight - newHeight) / 2;
+            // Use ACTUAL rendered dimensions for centering
+            refOffsetLeft = (containerWidth - actualWidth) / 2;
+            refOffsetTop = (containerHeight - actualHeight) / 2;
             
             // Ensure positive values (don't go negative)
             refOffsetLeft = Math.max(0, refOffsetLeft);
@@ -79,6 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
             referenceImage.style.left = `${refOffsetLeft}px`;
             referenceImage.style.top = `${refOffsetTop}px`;
             referenceImage.style.zIndex = "1";
+            
+            // Use actual dimensions for filler positioning
+            newWidth = actualWidth;
+            newHeight = actualHeight;
         } else {
             const updatedRefBounds = referenceImage.getBoundingClientRect();
             refOffsetTop = updatedRefBounds.top - wrapperBounds.top;
