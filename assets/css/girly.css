@@ -513,9 +513,14 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+    background: linear-gradient(45deg, #ffa7e9, #b5d1ff) !important;
     width: 100%;
     max-width: 100%;
+    box-sizing: border-box;
+}
+
+:root {
+    background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
 }
 
 * {
@@ -532,7 +537,7 @@ html {
     justify-content: center; 
     align-items: center;
     width: 100%; 
-    max-width: 100vw;
+    max-width: 100%;
     height: 100vh;
     height: -webkit-fill-available;
     min-height: 100vh;
@@ -540,6 +545,7 @@ html {
     overflow: hidden;
     position: relative;
     background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+    box-sizing: border-box;
 }
 
 
@@ -840,34 +846,66 @@ html {
 }
 
 @media screen and (orientation: landscape) {
-    html, body {
+    :root, html, body {
         min-height: 100vh;
-        min-height: -webkit-fill-available;
+        min-height: 100dvh;
         width: 100%;
         max-width: 100%;
-        background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        background: linear-gradient(45deg, #ffa7e9, #b5d1ff) !important;
         overflow: hidden;
+        /* Fill entire screen including safe areas */
+        padding: 0;
+        margin: 0;
+        padding-left: env(safe-area-inset-left, 0);
+        padding-right: env(safe-area-inset-right, 0);
     }
     
-    .pinkcontainer {
+    /* Create pseudo-element to fill safe areas with gradient */
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        z-index: -1;
+        pointer-events: none;
+    }
+    
+    #main, .pinkcontainer {
         width: 100%;
         max-width: 100%;
         min-height: 100vh;
-        min-height: -webkit-fill-available;
-        background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        min-height: 100dvh;
+        background: linear-gradient(45deg, #ffa7e9, #b5d1ff) !important;
         overflow: hidden;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
     
     .scrapbook-zoom-wrapper {
         width: 100%;
         max-width: 100%;
+        height: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
     }
     
     .image-wrapper {
         width: 100%;
         max-width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .dynamic-image, .reference-image {
+        max-width: 90%;
+        max-height: 85vh;
     }
 }
 
