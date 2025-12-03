@@ -4,24 +4,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const fillerContainers = document.querySelectorAll(".filler-container");
     const fillerLinks = document.querySelectorAll(".filler-link");
 
-    let manualZoom = 1;
-
-    // Make CTRL + scroll behave like zoom-in / zoom-out
-    window.addEventListener("wheel", (e) => {
-        if (e.ctrlKey) {
-            e.preventDefault();
-
-            // Zoom in (deltaY < 0), zoom out (deltaY > 0)
-            manualZoom *= e.deltaY < 0 ? 1.05 : 0.95;
-
-            // Prevent it from shrinking to nothing or exploding
-            manualZoom = Math.max(0.2, Math.min(manualZoom, 5));
-
-            updatePositions();
-        }
-    }, { passive: false });
-
-
     const updatePositions = () => {
         if (!referenceImage) return;
 
@@ -29,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const refBounds = referenceImage.getBoundingClientRect();
 
         // Dynamically size and position the reference image
-        const viewportHeight = window.innerHeight * 0.9 * manualZoom; // 90% of viewport height
-        const viewportWidth = window.innerWidth * 0.8 * manualZoom; // 80% of viewport width
+        const viewportHeight = window.innerHeight * 0.9; // 90% of viewport height
+        const viewportWidth = window.innerWidth * 0.8; // 80% of viewport width
         const naturalHeight = referenceImage.naturalHeight;
         const naturalWidth = referenceImage.naturalWidth;
 

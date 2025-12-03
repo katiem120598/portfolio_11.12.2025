@@ -11,10 +11,17 @@ function handleMenu() {
     const menu = document.querySelector('.navlist');
     const menuLinks = document.querySelectorAll('.navlist li');
 
-    if (!button || !menu) {
-        console.warn("Navbar elements not found yet");
-        return;
+    /*
+    // Check the screen width and add/remove 'menu-container' class accordingly
+    if (window.innerWidth < 800) {
+        button.classList.add('menu-container');
+        menu.style.display = 'none'; // Hide the menu initially
+    } else {
+        button.classList.remove('menu-container');
+        menu.style.display = 'flex'; // Display the menu horizontally initially
     }
+    */
+
     // Toggle the menu when the button is clicked
     button.addEventListener('click', function (event) {
         if (button.contains(event.target)) {
@@ -44,3 +51,8 @@ loadNavbar().then(() => {
     window.addEventListener('resize', handleMenu);
 });
 
+// Call the function to initialize the menu behavior
+handleMenu();
+
+// Add an event listener to handle resizing and reinitializing the menu behavior
+window.addEventListener('resize', handleMenu);
