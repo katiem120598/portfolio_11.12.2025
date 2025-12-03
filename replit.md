@@ -44,7 +44,12 @@ Configured as a static site deployment:
 - **Performance Optimizations**:
   - Added preconnect hints for Google Fonts and CDNs to reduce connection latency
   - Updated Google Fonts API to use `display=swap` for better font rendering
-  - Added `defer` attribute to all script tags across portfolio pages
+  - Added `defer` attribute to most script tags (except preloader scripts which run immediately)
+- **Preloader**:
+  - All portfolio pages have animated "loading..." preloader that waits for ALL images to load
+  - Index page has preloader that waits for fonts to load
+  - Preloader uses session storage to skip animation on repeat visits
+  - Created preload.js (waits for all images) and preload_font.js (waits for fonts only)
 - **Mobile Responsiveness**:
   - Updated viewport meta tag with `user-scalable=no, viewport-fit=cover` to prevent zoom issues
   - Added mobile-specific CSS styles for `.pinkcontainer` and `.image-wrapper`
