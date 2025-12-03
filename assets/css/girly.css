@@ -842,33 +842,29 @@ html {
     html, body {
         min-height: 100vh;
         min-height: -webkit-fill-available;
+        min-width: 100vw;
         width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        box-sizing: border-box;
     }
     
     .pinkcontainer {
+        min-width: 100vw;
         width: 100%;
         min-height: 100vh;
         min-height: -webkit-fill-available;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
-        padding-left: env(safe-area-inset-left, 0);
-        padding-right: env(safe-area-inset-right, 0);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
         box-sizing: border-box;
     }
     
     .image-wrapper {
+        min-width: 100vw;
         width: 100%;
-        max-width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
-    }
-    
-    .scrapbook-zoom-wrapper {
-        max-width: calc(100% - env(safe-area-inset-left, 0) - env(safe-area-inset-right, 0));
-    }
-    
-    .dynamic-image, .reference-image {
-        max-width: 70%;
-        max-height: 85vh;
     }
 }
 
@@ -882,16 +878,4 @@ html {
     touch-action: none;
     transform-origin: center center;
     will-change: transform;
-}
-
-@media screen and (max-width: 768px) {
-    .image-wrapper {
-        padding-left: env(safe-area-inset-left, 0);
-        padding-right: env(safe-area-inset-right, 0);
-        box-sizing: border-box;
-    }
-    
-    .dynamic-image, .reference-image {
-        max-width: 95%;
-    }
 }

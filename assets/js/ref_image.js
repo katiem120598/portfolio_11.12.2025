@@ -162,32 +162,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     window.addEventListener("resize", debouncedUpdate);
     
-    const handleOrientationChange = () => {
-        const zoomWrapper = document.querySelector(".scrapbook-zoom-wrapper");
-        if (zoomWrapper) {
-            zoomWrapper.style.transform = "";
-        }
-        
+    window.addEventListener("orientationchange", () => {
         setTimeout(() => {
             updatePositions();
-            setTimeout(() => {
-                updatePositions();
-            }, 300);
         }, 100);
-    };
-    
-    window.addEventListener("orientationchange", handleOrientationChange);
+    });
 
     if ('visualViewport' in window) {
-        window.visualViewport.addEventListener('resize', () => {
-            setTimeout(debouncedUpdate, 150);
-        });
-        window.visualViewport.addEventListener('scroll', debouncedUpdate);
+        window.visualViewport.addEventListener('resize', debouncedUpdate);
     }
-    
-    window.addEventListener("pageshow", (event) => {
-        if (event.persisted) {
-            updatePositions();
-        }
-    });
 });
