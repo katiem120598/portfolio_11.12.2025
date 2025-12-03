@@ -77,32 +77,22 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Use reference image bounds for clamping, not the wrapper (which includes tabs)
-        const refImage = wrapper.querySelector(".reference-image");
-        if (refImage) {
-            const refRect = refImage.getBoundingClientRect();
-            const parentRect = wrapper.parentElement.getBoundingClientRect();
-            
-            // Calculate max translation based on scaled reference image size
-            const scaledWidth = refRect.width;
-            const scaledHeight = refRect.height;
-            
-            const maxX = Math.max(0, (scaledWidth - parentRect.width) / 2);
-            const maxY = Math.max(0, (scaledHeight - parentRect.height) / 2);
+        // Use wrapper bounds (includes tabs) for full pan area
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const parentRect = wrapper.parentElement.getBoundingClientRect();
+        
+        // Calculate max translation - use wrapper width to include tabs
+        const scaledWidth = wrapperRect.width;
+        const scaledHeight = wrapperRect.height;
+        
+        // Allow panning to see the full content including tabs
+        // Asymmetric clamping: allow more panning to the left (negative X) to see tabs on right
+        const maxXRight = Math.max(0, (scaledWidth - parentRect.width) / 2);
+        const maxXLeft = maxXRight; // Allow equal panning in both directions
+        const maxY = Math.max(0, (scaledHeight - parentRect.height) / 2);
 
-            translateX = Math.max(-maxX, Math.min(maxX, translateX));
-            translateY = Math.max(-maxY, Math.min(maxY, translateY));
-        } else {
-            // Fallback to wrapper bounds
-            const rect = wrapper.getBoundingClientRect();
-            const parentRect = wrapper.parentElement.getBoundingClientRect();
-            
-            const maxX = (rect.width * scale - parentRect.width) / 2;
-            const maxY = (rect.height * scale - parentRect.height) / 2;
-
-            translateX = Math.max(-maxX, Math.min(maxX, translateX));
-            translateY = Math.max(-maxY, Math.min(maxY, translateY));
-        }
+        translateX = Math.max(-maxXRight, Math.min(maxXLeft, translateX));
+        translateY = Math.max(-maxY, Math.min(maxY, translateY));
     }
 
     wrapper.addEventListener("touchstart", function(e) {
@@ -167,9 +157,8 @@ document.addEventListener("DOMContentLoaded", function () {
             translateY = 0;
         } else {
             scale = 2;
-            // Use reference image bounds for double-click zoom centering
-            const refImage = wrapper.querySelector(".reference-image");
-            const rect = refImage ? refImage.getBoundingClientRect() : wrapper.getBoundingClientRect();
+            // Use wrapper bounds for double-click zoom centering
+            const rect = wrapper.getBoundingClientRect();
             translateX = (rect.left + rect.width / 2 - e.clientX) * 0.5;
             translateY = (rect.top + rect.height / 2 - e.clientY) * 0.5;
             clampTranslation();
