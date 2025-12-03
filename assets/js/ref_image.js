@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         referenceImage.style.height = `${newHeight}px`;
 
         const updatedRefBounds = referenceImage.getBoundingClientRect();
+        const wrapperBounds = imageWrapper ? imageWrapper.getBoundingClientRect() : { top: 0, left: 0 };
 
         fillerContainers.forEach((container, index) => {
             const fillerElement = container.querySelector(".filler-image");
@@ -56,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const widthPercentage = parseFloat(container.dataset.width || 20);
             const heightPercentage = parseFloat(container.dataset.height || 20);
 
-            const absoluteTop = updatedRefBounds.top + (topPercentage / 100) * updatedRefBounds.height;
-            const absoluteLeft = updatedRefBounds.left + (leftPercentage / 100) * updatedRefBounds.width;
+            const absoluteTop = (updatedRefBounds.top - wrapperBounds.top) + (topPercentage / 100) * updatedRefBounds.height;
+            const absoluteLeft = (updatedRefBounds.left - wrapperBounds.left) + (leftPercentage / 100) * updatedRefBounds.width;
             const absoluteWidth = (widthPercentage / 100) * updatedRefBounds.width;
             const absoluteHeight = (heightPercentage / 100) * updatedRefBounds.height;
 
