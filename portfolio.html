@@ -15,18 +15,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- END: Styles -->
     <style>
-        /* Block all interactions on the page */
-        #main {
-            pointer-events: none; /* Disable clicks for everything inside */
+        /* Block interactions on reference image only, allow clicks on links */
+        .reference-image {
+            pointer-events: none;
         }
         
-        /* Re-enable interactions only for dependent images */
+        /* Ensure links around dependent images are clickable */
+        .image-wrapper a {
+            pointer-events: auto;
+        }
+        
         .dependent-image {
-            pointer-events: auto; /* Make dependent images clickable */
-        }
-        
-        /* Ensure dependent images' links are clickable */
-        .dependent-image a {
             pointer-events: auto;
         }
         </style>
