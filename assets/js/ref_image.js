@@ -22,8 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const viewportHeight = window.innerHeight * 0.9;
-        const viewportWidth = window.innerWidth * 0.8;
+        const isMobile = window.innerWidth <= 768;
+        const viewportHeight = window.innerHeight * (isMobile ? 0.85 : 0.9);
+        const viewportWidth = window.innerWidth * (isMobile ? 0.95 : 0.8);
         const naturalHeight = referenceImage.naturalHeight;
         const naturalWidth = referenceImage.naturalWidth;
 
@@ -42,8 +43,22 @@ document.addEventListener("DOMContentLoaded", function () {
         referenceImage.style.width = `${newWidth}px`;
         referenceImage.style.height = `${newHeight}px`;
 
-        const updatedRefBounds = referenceImage.getBoundingClientRect();
-        const wrapperBounds = imageWrapper ? imageWrapper.getBoundingClientRect() : { top: 0, left: 0 };
+        const wrapperBounds = imageWrapper ? imageWrapper.getBoundingClientRect() : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        
+        let refOffsetTop, refOffsetLeft;
+        
+        if (isMobile) {
+            refOffsetLeft = (wrapperBounds.width - newWidth) / 2;
+            refOffsetTop = (wrapperBounds.height - newHeight) / 2;
+            
+            referenceImage.style.position = "absolute";
+            referenceImage.style.left = `${refOffsetLeft}px`;
+            referenceImage.style.top = `${refOffsetTop}px`;
+        } else {
+            const updatedRefBounds = referenceImage.getBoundingClientRect();
+            refOffsetTop = updatedRefBounds.top - wrapperBounds.top;
+            refOffsetLeft = updatedRefBounds.left - wrapperBounds.left;
+        }
 
         fillerContainers.forEach((container, index) => {
             const fillerElement = container.querySelector(".filler-image");
@@ -57,10 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const widthPercentage = parseFloat(container.dataset.width || 20);
             const heightPercentage = parseFloat(container.dataset.height || 20);
 
-            const absoluteTop = (updatedRefBounds.top - wrapperBounds.top) + (topPercentage / 100) * updatedRefBounds.height;
-            const absoluteLeft = (updatedRefBounds.left - wrapperBounds.left) + (leftPercentage / 100) * updatedRefBounds.width;
-            const absoluteWidth = (widthPercentage / 100) * updatedRefBounds.width;
-            const absoluteHeight = (heightPercentage / 100) * updatedRefBounds.height;
+            const absoluteTop = refOffsetTop + (topPercentage / 100) * newHeight;
+            const absoluteLeft = refOffsetLeft + (leftPercentage / 100) * newWidth;
+            const absoluteWidth = (widthPercentage / 100) * newWidth;
+            const absoluteHeight = (heightPercentage / 100) * newHeight;
 
             container.style.position = "absolute";
             container.style.top = `${absoluteTop}px`;
