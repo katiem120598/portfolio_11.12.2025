@@ -45,7 +45,6 @@ Configured as a static site deployment:
   - Added preconnect hints for Google Fonts and CDNs to reduce connection latency
   - Updated Google Fonts API to use `display=swap` for better font rendering
   - Added `defer` attribute to all script tags across portfolio pages
-  - Added `loading="lazy"` to all filler and dependent images for faster initial page load
 - **Mobile Responsiveness**:
   - Updated viewport meta tag with `user-scalable=no, viewport-fit=cover` to prevent zoom issues
   - Added mobile-specific CSS styles for `.pinkcontainer` and `.image-wrapper`
@@ -60,4 +59,4 @@ Configured as a static site deployment:
 - Cache control is disabled in development to see changes immediately
 - The site uses custom fonts and creative coding libraries that load at runtime
 - Scrapbook layout uses absolute positioning with percentage-based coordinates relative to reference images
-- Reference images use eager loading to ensure proper positioning, while filler/dependent images use lazy loading
+- All images load eagerly to ensure proper preloader behavior (waits for complete page load before displaying)
