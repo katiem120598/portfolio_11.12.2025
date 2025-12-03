@@ -786,6 +786,9 @@ html {
         min-height: 100vh;
         min-height: -webkit-fill-available;
         width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         overflow: hidden;
     }
     
@@ -794,16 +797,18 @@ html {
         height: 100vh;
         height: -webkit-fill-available;
         min-width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .dynamic-image {
         max-width: 95vw;
         max-height: 85vh;
-        transform: none;
     }
     
     .reference-image {
-        transform: none;
+        /* Keep centered positioning */
     }
 }
 
