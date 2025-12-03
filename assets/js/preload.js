@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
         loadingText.textContent = "loading" + ".".repeat(dotCount);
     }, 100);
 
-    // Wait for ALL images and resources to fully load
-    window.onload = function () {
+    // Function to hide preloader after all images are loaded
+    function hidePreloader() {
         // Stop the dot animation
         clearInterval(dotAnimation);
         
@@ -32,5 +32,36 @@ document.addEventListener("DOMContentLoaded", function () {
             // Mark this page as visited
             sessionStorage.setItem(pageKey, "true");
         }, 500);
-    };
+    }
+
+    // Get all images on the page
+    const images = document.querySelectorAll("img");
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    // If no images, hide preloader immediately
+    if (totalImages === 0) {
+        hidePreloader();
+        return;
+    }
+
+    // Function to check if all images are loaded
+    function checkAllLoaded() {
+        loadedCount++;
+        if (loadedCount >= totalImages) {
+            hidePreloader();
+        }
+    }
+
+    // Check each image
+    images.forEach(img => {
+        if (img.complete) {
+            // Image already loaded (from cache)
+            checkAllLoaded();
+        } else {
+            // Wait for image to load
+            img.addEventListener("load", checkAllLoaded);
+            img.addEventListener("error", checkAllLoaded); // Count errors too to avoid hanging
+        }
+    });
 });
