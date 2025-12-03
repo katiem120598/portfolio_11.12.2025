@@ -12,7 +12,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    max-width: 100%;
+    min-width: 100vw;
     min-height: 100vh;
     min-height: -webkit-fill-available;
     height: 100%;
@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
 }
 
@@ -531,21 +531,21 @@ html {
     display: flex; 
     justify-content: center; 
     align-items: center;
-    width: 100%; 
-    max-width: 100vw;
+    width: 100vw; 
     height: 100vh;
     height: -webkit-fill-available;
     min-height: 100vh;
     min-height: -webkit-fill-available;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
 }
 
 
 .dynamic-image {
-    max-width: 80%; 
+    max-width: 80vw; 
     max-height: 90vh; 
+    transform: translateX(9vw);
     width: auto; 
     height: auto; 
     object-fit: contain; 
@@ -554,11 +554,11 @@ html {
 
 .reference-image{
     pointer-events: none;
+    transform: translateX(9vw);
     width: auto; 
     height: auto; 
     object-fit: contain; 
     display: block; 
-    max-width: 100%;
 }
 
 .hover-text {
@@ -788,30 +788,40 @@ html {
     .pinkcontainer {
         min-height: 100vh;
         min-height: -webkit-fill-available;
-        width: 100vw;
+        width: 100%;
+        max-width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         overflow: hidden;
     }
     
+    .scrapbook-zoom-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+    }
+    
     .image-wrapper {
-        width: 100vw;
+        width: 100%;
+        max-width: 100%;
         height: 100vh;
         height: -webkit-fill-available;
-        min-width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
     }
     
     .dynamic-image {
         max-width: 95vw;
         max-height: 85vh;
+        transform: none;
     }
     
     .reference-image {
-        /* Keep centered positioning */
+        transform: none;
+        max-width: 95vw;
     }
 }
 
@@ -839,7 +849,7 @@ html {
     }
 }
 
-@media screen and (orientation: landscape) {
+@media screen and (orientation: landscape) and (max-width: 900px) {
     html, body {
         min-height: 100vh;
         min-height: -webkit-fill-available;
@@ -868,6 +878,12 @@ html {
         width: 100%;
         max-width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        overflow: hidden;
+    }
+    
+    .dynamic-image,
+    .reference-image {
+        transform: none;
     }
 }
 
