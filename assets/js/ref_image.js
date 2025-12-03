@@ -64,9 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
         let refOffsetTop, refOffsetLeft;
         
         if (isMobile) {
-            // Center within the viewport
-            refOffsetLeft = (wrapperBounds.width - newWidth) / 2;
-            refOffsetTop = (wrapperBounds.height - newHeight) / 2;
+            // Use window dimensions for centering on mobile
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            
+            refOffsetLeft = (containerWidth - newWidth) / 2;
+            refOffsetTop = (containerHeight - newHeight) / 2;
             
             // Ensure positive values (don't go negative)
             refOffsetLeft = Math.max(0, refOffsetLeft);
