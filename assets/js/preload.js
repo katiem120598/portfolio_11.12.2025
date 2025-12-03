@@ -1,15 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const preloader = document.getElementById("preloader");
     const loadingText = document.getElementById("loading-text");
-    const pageKey = "hasVisited_" + window.location.pathname;
-
-    // Check if the user has already visited this specific page
-    const hasVisitedBefore = sessionStorage.getItem(pageKey);
-
-    if (hasVisitedBefore) {
-        preloader.style.display = "none";
-        return;
-    }
 
     let dotCount = 0;
 
@@ -29,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         setTimeout(() => {
             preloader.style.display = "none";
-            // Mark this page as visited
-            sessionStorage.setItem(pageKey, "true");
         }, 500);
     }
 
