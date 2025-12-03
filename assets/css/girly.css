@@ -483,7 +483,8 @@ a{
         overflow-y: auto;
     }
 
-    .pinkcontainer {
+    /* Only apply flex-start to containers with assignment grids, not scrapbook pages */
+    .pinkcontainer:has(.assignment-grid) {
         justify-content: flex-start; /* Ensure content starts at the top */
         min-height: 100vh;
         height: auto; /* Allow content to expand and fill the page */
