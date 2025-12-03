@@ -36,8 +36,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // On mobile portrait, leave extra space on the right for navigation tabs
+        const isPortrait = window.innerHeight > window.innerWidth;
+        const mobileWidthMultiplier = isPortrait ? 0.75 : 0.85; // Smaller in portrait to fit tabs
         const viewportHeight = window.innerHeight * (isMobile ? 0.85 : 0.9);
-        const viewportWidth = window.innerWidth * (isMobile ? 0.95 : 0.8);
+        const viewportWidth = window.innerWidth * (isMobile ? mobileWidthMultiplier : 0.8);
         const naturalHeight = referenceImage.naturalHeight;
         const naturalWidth = referenceImage.naturalWidth;
 
