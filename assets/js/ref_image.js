@@ -139,20 +139,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (isMobile) {
             // On mobile, position tabs absolutely to the right of the reference image
-            const tabHeight = Math.max(40, 0.12 * newHeight);
-            const tabSpacing = 5;
-            let tabTop = refOffsetTop + (newHeight * 0.15);
+            const isPortrait = window.innerHeight > window.innerWidth;
+            const numTabs = dependentImages.length;
             
-            dependentImages.forEach((image, index) => {
-                image.style.position = "absolute";
-                image.style.top = `${tabTop}px`;
-                image.style.left = `${refOffsetLeft + newWidth + 5}px`;
-                image.style.height = `${tabHeight}px`;
-                image.style.width = "auto";
-                image.style.zIndex = "200";
+            if (isPortrait) {
+                // Portrait: stack tabs vertically, sized to fit within scrapbook height
+                const totalTabSpace = newHeight * 0.7; // Use 70% of scrapbook height for tabs
+                const tabSpacing = 3;
+                const tabHeight = Math.min(50, (totalTabSpace - (tabSpacing * (numTabs - 1))) / numTabs);
+                let tabTop = refOffsetTop + (newHeight * 0.15);
                 
-                tabTop += tabHeight + tabSpacing;
-            });
+                dependentImages.forEach((image, index) => {
+                    image.style.position = "absolute";
+                    image.style.top = `${tabTop}px`;
+                    image.style.left = `${refOffsetLeft + newWidth + 3}px`;
+                    image.style.height = `${tabHeight}px`;
+                    image.style.width = "auto";
+                    image.style.zIndex = "200";
+                    
+                    tabTop += tabHeight + tabSpacing;
+                });
+            } else {
+                // Landscape: similar to desktop positioning
+                const tabHeight = Math.max(40, 0.14 * newHeight);
+                const tabSpacing = 5;
+                let tabTop = refOffsetTop + (newHeight * 0.1);
+                
+                dependentImages.forEach((image, index) => {
+                    image.style.position = "absolute";
+                    image.style.top = `${tabTop}px`;
+                    image.style.left = `${refOffsetLeft + newWidth + 5}px`;
+                    image.style.height = `${tabHeight}px`;
+                    image.style.width = "auto";
+                    image.style.zIndex = "200";
+                    
+                    tabTop += tabHeight + tabSpacing;
+                });
+            }
         } else {
             // Desktop: use original relative positioning
             let cumulativeHeight = -0.39 * newHeight;
