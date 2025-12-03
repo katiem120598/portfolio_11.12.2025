@@ -800,6 +800,9 @@ html {
         width: 100%;
         max-width: 100%;
         overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .image-wrapper {
@@ -817,11 +820,13 @@ html {
         max-width: 95vw;
         max-height: 85vh;
         transform: none;
+        margin: 0 auto;
     }
     
     .reference-image {
         transform: none;
         max-width: 95vw;
+        margin: 0 auto;
     }
 }
 
@@ -872,6 +877,9 @@ html {
         width: 100%;
         max-width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .image-wrapper {
@@ -879,11 +887,15 @@ html {
         max-width: 100%;
         background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     
     .dynamic-image,
     .reference-image {
         transform: none;
+        margin: 0 auto;
     }
 }
 
