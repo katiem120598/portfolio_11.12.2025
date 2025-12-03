@@ -14,6 +14,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const MIN_SCALE = 1;
     const MAX_SCALE = 3;
+    
+    // Get dependent images (tabs) to apply inverse transform during zoom
+    const dependentImages = document.querySelectorAll(".dependent-image");
+
+    function updateTabsTransform() {
+        // Apply inverse transform to tabs so they don't zoom with the scrapbook
+        const inverseScale = 1 / scale;
+        dependentImages.forEach(img => {
+            if (scale > 1) {
+                img.style.transform = `scale(${inverseScale})`;
+                img.style.transformOrigin = "left center";
+            } else {
+                img.style.transform = "";
+            }
+        });
+    }
 
     function resetZoom() {
         scale = 1;
@@ -24,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         lastTranslateY = 0;
         wrapper.style.transition = "transform 0.2s ease-out";
         wrapper.style.transform = "";
+        updateTabsTransform();
         setTimeout(() => {
             wrapper.style.transition = "";
         }, 200);
@@ -54,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function applyTransform() {
         wrapper.style.transform = `translate3d(${translateX}px, ${translateY}px, 0) scale(${scale})`;
+        updateTabsTransform();
     }
 
     function clampTranslation() {
@@ -63,14 +81,32 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const rect = wrapper.getBoundingClientRect();
-        const parentRect = wrapper.parentElement.getBoundingClientRect();
-        
-        const maxX = (rect.width * scale - parentRect.width) / 2;
-        const maxY = (rect.height * scale - parentRect.height) / 2;
+        // Use reference image bounds for clamping, not the wrapper (which includes tabs)
+        const refImage = wrapper.querySelector(".reference-image");
+        if (refImage) {
+            const refRect = refImage.getBoundingClientRect();
+            const parentRect = wrapper.parentElement.getBoundingClientRect();
+            
+            // Calculate max translation based on scaled reference image size
+            const scaledWidth = refRect.width;
+            const scaledHeight = refRect.height;
+            
+            const maxX = Math.max(0, (scaledWidth - parentRect.width) / 2);
+            const maxY = Math.max(0, (scaledHeight - parentRect.height) / 2);
 
-        translateX = Math.max(-maxX, Math.min(maxX, translateX));
-        translateY = Math.max(-maxY, Math.min(maxY, translateY));
+            translateX = Math.max(-maxX, Math.min(maxX, translateX));
+            translateY = Math.max(-maxY, Math.min(maxY, translateY));
+        } else {
+            // Fallback to wrapper bounds
+            const rect = wrapper.getBoundingClientRect();
+            const parentRect = wrapper.parentElement.getBoundingClientRect();
+            
+            const maxX = (rect.width * scale - parentRect.width) / 2;
+            const maxY = (rect.height * scale - parentRect.height) / 2;
+
+            translateX = Math.max(-maxX, Math.min(maxX, translateX));
+            translateY = Math.max(-maxY, Math.min(maxY, translateY));
+        }
     }
 
     wrapper.addEventListener("touchstart", function(e) {
@@ -135,9 +171,11 @@ document.addEventListener("DOMContentLoaded", function () {
             translateY = 0;
         } else {
             scale = 2;
-            const rect = wrapper.getBoundingClientRect();
-            translateX = (rect.width / 2 - e.clientX) * 0.5;
-            translateY = (rect.height / 2 - e.clientY) * 0.5;
+            // Use reference image bounds for double-click zoom centering
+            const refImage = wrapper.querySelector(".reference-image");
+            const rect = refImage ? refImage.getBoundingClientRect() : wrapper.getBoundingClientRect();
+            translateX = (rect.left + rect.width / 2 - e.clientX) * 0.5;
+            translateY = (rect.top + rect.height / 2 - e.clientY) * 0.5;
             clampTranslation();
         }
         
