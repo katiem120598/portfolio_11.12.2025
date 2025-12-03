@@ -12,14 +12,19 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh; /* Ensures it covers the viewport initially */
+    min-width: 100vw;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    height: 100%;
     background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative; /* Ensure positioned elements inside are relative to it */
-    overflow: auto; /* Allow scrolling inside the container */
+    position: relative;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 
@@ -503,8 +508,20 @@ a{
 
 html, body {
     height: 100%;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+    background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+    touch-action: pan-x pan-y;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+html {
+    height: -webkit-fill-available;
 }
 
 .image-wrapper {
@@ -512,8 +529,13 @@ html, body {
     justify-content: center; 
     align-items: center;
     width: 100vw; 
-    height: 100vh; 
-    overflow: hidden; 
+    height: 100vh;
+    height: -webkit-fill-available;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
 }
 
 
@@ -556,12 +578,16 @@ html, body {
 
 
 .filler-container {
-    position: relative; /* Ensure positioned context for children */
-    overflow: hidden;  /* Optional: Clip content if necessary */
+    position: absolute;
+    overflow: visible;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
+    z-index: 150;
+    transform-origin: top left;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .filler-image {
@@ -752,5 +778,70 @@ html, body {
     
     .modal-body h2 {
         font-size: 1.6rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pinkcontainer {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        width: 100vw;
+        overflow: hidden;
+    }
+    
+    .image-wrapper {
+        width: 100vw;
+        height: 100vh;
+        height: -webkit-fill-available;
+        min-width: 100vw;
+    }
+    
+    .dynamic-image {
+        max-width: 95vw;
+        max-height: 85vh;
+        transform: none;
+    }
+    
+    .reference-image {
+        transform: none;
+    }
+}
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .pinkcontainer {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        height: auto;
+    }
+    
+    .image-wrapper {
+        height: 100vh;
+        height: -webkit-fill-available;
+        min-height: 100%;
+    }
+    
+    .dynamic-image {
+        max-height: 80vh;
+        max-width: 70vw;
+    }
+    
+    navbar {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+@media screen and (orientation: landscape) {
+    html, body {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+        background: linear-gradient(45deg, #ffa7e9, #b5d1ff);
+        background-attachment: fixed;
+    }
+    
+    .pinkcontainer {
+        min-width: 100vw;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 }

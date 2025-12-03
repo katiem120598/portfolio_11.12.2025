@@ -50,9 +50,3 @@ loadNavbar().then(() => {
     handleMenu();
     window.addEventListener('resize', handleMenu);
 });
-
-// Call the function to initialize the menu behavior
-handleMenu();
-
-// Add an event listener to handle resizing and reinitializing the menu behavior
-window.addEventListener('resize', handleMenu);

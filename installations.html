@@ -6,10 +6,11 @@
     <meta name="description" content="portfolio, projects, work">
     <meta name="keywords" content="portfolio, personal, projects, work, katie mueller">
     <meta name="author" content="Katie Mueller">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i%7cWork+Sans:400,500,700" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/girly.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -31,19 +32,19 @@
 
             <!-- Dependent Images -->
             <a href="personal_favs.html">
-                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Dependent Image">
+                <img src="assets/images/personal_favs.png" class="dynamic-image dependent-image" alt="Dependent Image" loading="lazy">
             </a>
             <a href="web_apps.html">
-                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image">
+                <img src="assets/images/web_apps.png" class="dynamic-image dependent-image" alt="Dependent Image" loading="lazy">
             </a>
             <a href="creative_coding.html">
-                <img src="assets/images/creative_coding.png" class="dynamic-image dependent-image" alt="Dependent Image">
+                <img src="assets/images/creative_coding.png" class="dynamic-image dependent-image" alt="Dependent Image" loading="lazy">
             </a>
             <a href="installations.html">
-                <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Dependent Image">
+                <img src="assets/images/interactive_exhibits.png" class="dynamic-image dependent-image" alt="Dependent Image" loading="lazy">
             </a>
             <a href="architecture.html">
-                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Dependent Image">
+                <img src="assets/images/arch.png" class="dynamic-image dependent-image" alt="Dependent Image" loading="lazy">
             </a>
 
             <!-- Filler Images -->
@@ -65,7 +66,7 @@
             data-left="59.5" 
             data-width="15" 
             data-height="38">   
-                <img src="assets/images/board_light_wbackground.png" class="filler-image" alt="Description of the image">
+                <img src="assets/images/board_light_wbackground.png" class="filler-image" alt="Description of the image" loading="lazy">
             </div>
             <div
             data-project-id="reflected-identities"
@@ -90,7 +91,7 @@
             data-left="10" 
             data-width="30" 
             data-height="32">
-                <img src="assets/images/reflected_identities_wbackground.png" class="filler-image"  alt="Description of the image">
+                <img src="assets/images/reflected_identities_wbackground.png" class="filler-image" alt="Description of the image" loading="lazy">
                 
             </div>
             <div
@@ -115,7 +116,7 @@
             data-left="23" 
             data-width="22" 
             data-height="56">
-                <img src="assets/images/led_array_wbackground.png" class="filler-image" alt="Description of the image">
+                <img src="assets/images/led_array_wbackground.png" class="filler-image" alt="Description of the image" loading="lazy">
             </div>
             <div
             data-project-id="box"
@@ -135,7 +136,7 @@
             data-left="4" 
             data-width="16" 
             data-height="26">
-                <img src="assets/images/box_wbackground.png" class="filler-image" alt="Description of the image">
+                <img src="assets/images/box_wbackground.png" class="filler-image" alt="Description of the image" loading="lazy">
             </div>
             <div
             data-project-id="drop-earrings"
@@ -154,7 +155,7 @@
             data-left="4.5" 
             data-width="14" 
             data-height="32">
-                <img src="assets/images/earrings_wbackground.png" class="filler-image" alt="Description of the image">
+                <img src="assets/images/earrings_wbackground.png" class="filler-image" alt="Description of the image" loading="lazy">
             </div>
             <div
             data-project-id="hard-reset"
@@ -180,7 +181,7 @@
             data-left="60" 
             data-width="32" 
             data-height="52">
-                <img src="assets/images/hard_reset_wbackground2.png" class="filler-image" alt="Description of the image">
+                <img src="assets/images/hard_reset_wbackground2.png" class="filler-image" alt="Description of the image" loading="lazy">
             </div>
         </div>
     </div>
@@ -196,11 +197,11 @@
 
 
     <!-- Scripts -->
-    <script src="assets/js/menu_all.js"></script>
-    <script src="assets/js/ref_image.js"></script>
-    <script src="assets/js/filler_links.js"></script>
-    <script src = "assets/js/preload.js"></script>
-    <script src = "assets/js/popup.js"></script>
+    <script src="assets/js/menu_all.js" defer></script>
+    <script src="assets/js/ref_image.js" defer></script>
+    <script src="assets/js/filler_links.js" defer></script>
+    <script src="assets/js/preload.js" defer></script>
+    <script src="assets/js/popup.js" defer></script>
 
 </body>
 </html>

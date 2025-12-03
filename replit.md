@@ -41,8 +41,23 @@ Configured as a static site deployment:
 - December 3, 2025: Initial Replit setup with http-server for static file serving
 - Configured deployment for static hosting
 - Added workflow configuration for development server
+- **Performance Optimizations**:
+  - Added preconnect hints for Google Fonts and CDNs to reduce connection latency
+  - Updated Google Fonts API to use `display=swap` for better font rendering
+  - Added `defer` attribute to all script tags across portfolio pages
+  - Added `loading="lazy"` to all filler and dependent images for faster initial page load
+- **Mobile Responsiveness**:
+  - Updated viewport meta tag with `user-scalable=no, viewport-fit=cover` to prevent zoom issues
+  - Added mobile-specific CSS styles for `.pinkcontainer` and `.image-wrapper`
+  - Added media queries for mobile (max-width: 768px) and landscape orientation handling
+  - Added debounced resize/orientation handling in ref_image.js
+- **Bug Fixes**:
+  - Fixed filler image z-index stacking (now z-index: 150) so project images display above scrapbook background
+  - Fixed menu_all.js error where handleMenu() was called before navbar loaded
 
 ## Notes
 - All static assets are served from the root directory
 - Cache control is disabled in development to see changes immediately
 - The site uses custom fonts and creative coding libraries that load at runtime
+- Scrapbook layout uses absolute positioning with percentage-based coordinates relative to reference images
+- Reference images use eager loading to ensure proper positioning, while filler/dependent images use lazy loading
