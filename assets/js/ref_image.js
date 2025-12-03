@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
         
         isUpdating = true;
 
+        const isMobile = window.innerWidth <= 768;
+        
+        // Reset reference image position first to get accurate measurements
+        if (isMobile) {
+            referenceImage.style.position = "absolute";
+            referenceImage.style.left = "0px";
+            referenceImage.style.top = "0px";
+        } else {
+            referenceImage.style.position = "";
+            referenceImage.style.left = "";
+            referenceImage.style.top = "";
+        }
+
         const refBounds = referenceImage.getBoundingClientRect();
         
         if (refBounds.width === 0 || refBounds.height === 0) {
@@ -22,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        const isMobile = window.innerWidth <= 768;
         const viewportHeight = window.innerHeight * (isMobile ? 0.85 : 0.9);
         const viewportWidth = window.innerWidth * (isMobile ? 0.95 : 0.8);
         const naturalHeight = referenceImage.naturalHeight;
@@ -54,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
             referenceImage.style.position = "absolute";
             referenceImage.style.left = `${refOffsetLeft}px`;
             referenceImage.style.top = `${refOffsetTop}px`;
+            referenceImage.style.zIndex = "1";
         } else {
             const updatedRefBounds = referenceImage.getBoundingClientRect();
             refOffsetTop = updatedRefBounds.top - wrapperBounds.top;
@@ -83,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             container.style.width = `${absoluteWidth}px`;
             container.style.height = `${absoluteHeight}px`;
             container.style.transform = "translate3d(0,0,0)";
+            container.style.zIndex = "150";
 
             fillerElement.style.width = "100%";
             fillerElement.style.height = "100%";
@@ -180,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("orientationchange", () => {
         setTimeout(() => {
             updatePositions();
-        }, 100);
+        }, 300);
     });
 
     if ('visualViewport' in window) {
