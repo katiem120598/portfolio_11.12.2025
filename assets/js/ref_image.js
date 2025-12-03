@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const fillerContainers = document.querySelectorAll(".filler-container");
     const fillerLinks = document.querySelectorAll(".filler-link");
     const imageWrapper = document.querySelector(".image-wrapper");
+    const zoomWrapper = document.querySelector(".scrapbook-zoom-wrapper");
     
     let lastWidth = 0;
     let lastHeight = 0;
@@ -55,13 +56,21 @@ document.addEventListener("DOMContentLoaded", function () {
         referenceImage.style.width = `${newWidth}px`;
         referenceImage.style.height = `${newHeight}px`;
 
-        const wrapperBounds = imageWrapper ? imageWrapper.getBoundingClientRect() : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+        // On mobile, use zoomWrapper (which has viewport height) for centering calculations
+        // On desktop, use imageWrapper for positioning relative to the flex container
+        const containerForCentering = isMobile && zoomWrapper ? zoomWrapper : imageWrapper;
+        const wrapperBounds = containerForCentering ? containerForCentering.getBoundingClientRect() : { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
         
         let refOffsetTop, refOffsetLeft;
         
         if (isMobile) {
+            // Center within the viewport
             refOffsetLeft = (wrapperBounds.width - newWidth) / 2;
             refOffsetTop = (wrapperBounds.height - newHeight) / 2;
+            
+            // Ensure positive values (don't go negative)
+            refOffsetLeft = Math.max(0, refOffsetLeft);
+            refOffsetTop = Math.max(0, refOffsetTop);
             
             referenceImage.style.position = "absolute";
             referenceImage.style.left = `${refOffsetLeft}px`;
