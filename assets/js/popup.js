@@ -43,7 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
                     ${
-                        item.dataset.projectModalVideo
+                        // PRIORITY 1 — local .mov/.mp4 video
+                        item.dataset.projectModalLocalvideo
+                        ? `
+                            <video 
+                                src="${item.dataset.projectModalLocalvideo}"
+                                controls autoplay loop muted playsinline
+                                style="
+                                    width:${modalScale ? modalScale + '%' : '100%'};
+                                    height:auto;
+                                    display:block;
+                                    margin:20px auto;
+                                    border-radius:12px;
+                                "
+                            ></video>
+                        `
+                        // PRIORITY 2 — YouTube / iframe video
+                        : item.dataset.projectModalVideo
                         ? `
                             <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; margin:20px 0;">
                                 <iframe 
@@ -55,7 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </iframe>
                             </div>
                         `
+                        // fallback stays the same — DO NOT REMOVE
                         : (
+
                             modalImgSrc
                             ? `<img src="${modalImgSrc}"
                                     alt="${modalImgAlt}"
