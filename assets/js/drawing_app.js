@@ -273,13 +273,13 @@ function mouseDragged() {
 function mouseReleased() {
   // Save the current shape if it's closed, then reset for a new shape
   //if (distance((blobPoints[0].x,blobPoints[0].y),(blobPoints[blobPoints.length - 1].x,blobPoints[blobPoints.length - 1].y)) < 15) 
+  if (blobPoints.length>1){
     blobPoints.push(createVector(blobPoints[0].x,blobPoints[0].y))
     geometry.push([...blobPoints]); // Copy the current blobPoints to geometry
     randomx.push((Math.random()-0.5)*3);
     randomy.push((Math.random()-0.5)*3);
     facx.push(1);
     facy.push(1);
-    blobPoints=[];
     randscalex.push(Math.random()*defrate+defadj);
     randscaley.push(Math.random()*defrate+defadj);
     randscalebotx.push(Math.random()*defrate+defadj);
@@ -290,6 +290,8 @@ function mouseReleased() {
     facxprev1.push(1);
     facyprev1.push(1);
     shapefill.push((255,255,255))
+  };
+  blobPoints = [];
   }
 
   function distance(a, b) {
