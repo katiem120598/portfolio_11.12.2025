@@ -425,3 +425,8 @@ function checkAndResolveOverlaps() {
     }
   }
 }
+
+function touchMoved() {
+  return false; // prevents default scroll on touch
+}
+
