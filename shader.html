@@ -62,11 +62,29 @@
     </button>
 
     <script>
-        document.getElementById("startSoundButton").addEventListener("click", () => {
-            userStartAudio();     // <-- IMPORTANT
-            document.getElementById("startSoundButton").style.display = "none";
-        });
+      let audioStarted = false;
+
+      document.getElementById("startSoundButton").addEventListener("click", () => {
+
+        // Unlock audio context
+        userStartAudio();
+
+        // Create oscillators only once, inside user gesture
+        if (!audioStarted) {
+          for (let i = 0; i < keys.length; i++) {
+            let o = new p5.Oscillator('sine');
+            o.start();
+            o.amp(0);
+            oscillators.push(o);
+          }
+          audioStarted = true;
+        }
+
+        // Hide button
+        document.getElementById("startSoundButton").style.display = "none";
+      });
     </script>
+
     <div class="footer">
       <p>
         keys 1-8: play the notes of the cmajor scale | right/left: increase or decrease the duration of each note

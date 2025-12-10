@@ -16,7 +16,7 @@ let midimap = {
 let keys = Object.keys(midimap);
 let activeNotes = {};
 let oscillators = [];
-let duration = 2.0;
+let duration = 5.0;
 function updateDurationDisplay() {
   document.getElementById("durationDisplay").textContent = duration;
 }
@@ -25,7 +25,7 @@ updateDurationDisplay();
 // Always use `preload` in p5 for any async functions that may take long
 // to execute but are needed before program starts.
 function preload() {
-  myShader = loadShader('/DemoScene/shaders/vshader.vert', 'DemoScene/shaders/fshader.frag');
+  myShader = loadShader('/assets/shaders/vshader.vert', '/assets/shaders/fshader.frag');
 }
 
 function setup() {
@@ -34,12 +34,6 @@ function setup() {
   dimy = dimx;
   createCanvas(dimx,dimy,WEBGL);
   pixelDensity(1);
-  for (let i = 0; i < keys.length; i++) {
-    let osc = new p5.Oscillator('sine');
-    osc.start();
-    osc.amp(0); // Start with amplitude at 0
-    oscillators.push(osc);
-  }
 }
 
 function draw() {
@@ -73,6 +67,7 @@ function draw() {
   // console.log(`${width}x${height} FPS: ${Math.round(frameRate(), 0)}`);
 }
 
+
 function keyPressed() {
   if (keys.includes(key)) {
     let index = keys.indexOf(key); // Get the index for the corresponding oscillator
@@ -103,6 +98,60 @@ function keyPressed() {
     updateDurationDisplay();
   }
 }
+
+/*
+function keyPressed() {
+  if (keys.includes(key)) {
+
+    let index = keys.indexOf(key);
+    let osc = oscillators[index];
+    let frequency = 440 * 2 ** ((midimap[key] - 9) / 12);
+
+    // 1️⃣ CANCEL any previously scheduled fade-out for this key
+    if (fadeTimers[key]) {
+      clearTimeout(fadeTimers[key]);
+      fadeTimers[key] = null;
+    }
+
+    // 2️⃣ Hard-reset amplitude so retriggering is always clean
+    osc.amp(0, 0);
+
+    // 3️⃣ Set frequency
+    osc.freq(frequency);
+
+    // 4️⃣ Fade in with your original duration logic
+    osc.amp(0.5, 0.25 * duration);
+
+    // 5️⃣ Shader tracking (unchanged)
+    activeNotes[key] = [index, millis() * 0.001];
+
+    // 6️⃣ Schedule fade-out using your original duration
+    fadeTimers[key] = setTimeout(() => {
+
+      osc.amp(0, 0.75 * duration);
+
+      // remove visual AFTER fade-out
+      fadeTimers[key] = setTimeout(() => {
+        delete activeNotes[key];
+      }, 0.75 * duration * 1000);
+
+    }, 1); // tiny delay prevents double-trigger conflict
+  }
+
+
+  else if (keyCode === RIGHT_ARROW){
+    duration = min(10, duration + 0.5);
+    updateDurationDisplay();
+  }
+
+  else if (keyCode === LEFT_ARROW){
+    duration = max(2.0, duration - 0.5);
+    updateDurationDisplay();
+  }
+}
+*/
+
+
 
 /*
 function keyReleased() {
