@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? `
                             <video 
                                 src="${item.dataset.projectModalLocalvideo}"
-                                controls autoplay loop muted playsinline
+                                controls autoplay loop playsinline
                                 style="
                                     width:${modalScale ? modalScale + '%' : '100%'};
                                     height:auto;

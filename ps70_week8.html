@@ -9,21 +9,51 @@
   <!--link rel="stylesheet" href="DemoScene\styles_2.css"-->
   <link rel="stylesheet" href="assets\css\girly.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    /* Let this page scroll like a normal page */
+    html, body {
+      overflow-x: auto !important;
+      overflow-y: auto !important;
+      background: black; /* matches your blackcontainer background */
+    }
+
+    /* Make the main container behave like a regular block layout */
+    .blackcontainer {
+      display: block;
+      align-items: stretch;
+      justify-content: flex-start;
+    }
+
+    /* Make the image grids behave nicely on narrow screens */
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center; /* center as a group but not off-screen */
+    }
+
+    .image-grid img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+  
 </head>
 <!--CHATGPT was used to assist in -->
 <!--div id = "main" class="pinkcontainer">
-  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/sparkles.webp" alt="Image 1" class ="random-image">
   <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
   <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
-  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
-  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/coquette.webp" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.webp" alt="Image 1" class ="random-image">
   <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
   <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
-  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
-  <img src="assets/images/sparkles.png" alt="Image 1" class ="random-image">
+  <img src="assets/images/coquette.webp" alt="Image 4" class ="random-image">
+  <img src="assets/images/sparkles.webp" alt="Image 1" class ="random-image">
   <img src="assets/images/smiley.svg" alt="Image 2" class ="random-image">
   <img src="assets/images/lipstick.svg" alt="Image 3" class ="random-image">
-  <img src="assets/images/coquette.png" alt="Image 4" class ="random-image">
+  <img src="assets/images/coquette.webp" alt="Image 4" class ="random-image">
   </div-->
 
   <body >
@@ -31,7 +61,7 @@
     <navbar class = "navbar-contents">
       <div class = "home-button">
           <a href = "index.html#main">
-              <img class = logo src="assets/images/explosion_bubble.png" alt="" width="150">
+              <img class = logo src="assets/images/explosion_bubble.webp" alt="" width="150">
               <span class = "home-button-text">katie <3</span> 
           </a>
       </div>
@@ -59,7 +89,7 @@
         <p class="whitetext" style="font-size: 20px; ">
             step 2: cnc wax mold<br><br>
         </p>
-        <img src="./assets/images/earrings_model.png" style="height: auto; width: 30vw;">
+        <img src="./assets/images/earrings_model.webp" style="height: auto; width: 30vw;">
         <p class = "whitetext" style = "font-style:normal; font-size: 12px"><br>3d rhino model of the wax mold to be cnc'd</p>
     </div>
     <div style = "margin-top: 40px">

@@ -314,7 +314,7 @@ a{
 }
 .custom-bg-size {
     position: relative;
-    background-image: url('assets/images/cloud.png');
+    background-image: url('/assets/images/cloud.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -447,7 +447,7 @@ a{
     position: relative;
     width: 250px;
     height: 150px;
-    background-image: url('assets/images/cloud.png'); /* Replace with your cloud image path */
+    background-image: url('assets/images/cloud.webp'); /* Replace with your cloud image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -478,7 +478,7 @@ a{
     position: relative;
     width: 300px;
     height: auto;
-    background-image: url('assets/images/cloud.png');
+    background-image: url('assets/images/cloud.webp');
     background-size: 95%; /* Background slightly smaller than container */
     background-repeat: no-repeat;
     background-position: center;
@@ -543,7 +543,7 @@ html, body {
     position: absolute;
     width: 300px;
     height: 180px;
-    background-image: url('../images/cloud.png');
+    background-image: url('../images/cloud.webp');
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

@@ -331,7 +331,7 @@ a{
 }
 .custom-bg-size {
     position: relative;
-    background-image: url('assets/images/cloud.png');
+    background-image: url('assets/images/cloud.webp');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -464,7 +464,7 @@ a{
     position: relative;
     width: 250px;
     height: 150px;
-    background-image: url('assets/images/cloud.png'); /* Replace with your cloud image path */
+    background-image: url('assets/images/cloud.webp'); /* Replace with your cloud image path */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -496,7 +496,7 @@ a{
     position: relative;
     width: 300px;
     height: auto;
-    background-image: url('assets/images/cloud.png');
+    background-image: url('assets/images/cloud.webp');
     background-size: 95%; /* Background slightly smaller than container */
     background-repeat: no-repeat;
     background-position: center;
@@ -607,12 +607,12 @@ html {
 .filler-image.hovered {
     /*filter: grayscale(100%) saturate(50%) brightness(20%);*/
     transform: translateY(-5px) rotate(var(--card-rotate, -5deg));
-    cursor: url("../images/click_icon.png")10 10, pointer;
+    cursor: url("../images/click_icon.webp")10 10, pointer;
 }
 
 /*
 .dependent-image:hover{
-    cursor: url("../images/click_icon.png") 10 10, pointer;
+    cursor: url("../images/click_icon.webp") 10 10, pointer;
 }
 */
 

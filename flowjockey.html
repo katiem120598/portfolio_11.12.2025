@@ -104,24 +104,52 @@
 
     <!-- JavaScript to delay loading of the draw iframe -->
     <script>
-      // Wait until the window has fully loaded
-      window.onload = function() {
-        // Load moderate iframe after 1 second
-        setTimeout(function(){
-          document.getElementById('moderate-iframe').src = "https://katiem120598.github.io/flowJockey_perform/";
-        }, 1000); // 1 second delay for moderate-iframe
+window.onload = function () {
 
-        // Load draw iframe after another 1 second (2 seconds in total)
-        setTimeout(function() {
-          document.getElementById('draw-iframe').src = "https://katiem120598.github.io/flowJockey_draw/";
-        }, 1000); // 2 seconds delay for draw-iframe
+  setTimeout(() => {
+    document.getElementById('moderate-iframe').src = "https://katiem120598.github.io/flowJockey_perform/";
+    document.getElementById('draw-iframe').src = "https://katiem120598.github.io/flowJockey_draw/";
+  }, 1000);
+
+  const displayIframe = document.getElementById("display-iframe");
+
+  displayIframe.onload = function () {
+    console.log("Display iframe loaded — waiting for its JS to initialize...");
+
+    const fw = displayIframe.contentWindow;
+
+    // Poll until p5.js finishes setting up and console.log stops changing
+    const hookInterval = setInterval(() => {
+
+      if (!fw || !fw.console) return;
+
+      const currentLog = fw.console.log;
+
+      // If it's already our wrapped version, stop
+      if (currentLog._isHooked) return;
+
+      // Replace console.log
+      const orig = currentLog;
+      const wrapped = function (...args) {
+        orig.apply(fw.console, args);
+
+        if (args.join(" ").includes("✔ Playing 757 track")) {
+          console.warn("🔥 DETECTED TRACK EVENT");
+          alert("found it!");
+        }
       };
+      wrapped._isHooked = true;
 
-      // Function to refresh an iframe by ID
-      function refreshIframe(iframeId) {
-        var iframe = document.getElementById(iframeId);
-        iframe.src = iframe.src; // Reset the src to refresh the iframe
-      }
+      fw.console.log = wrapped;
+
+      console.log("🎉 Successfully hooked console.log inside iframe!");
+      clearInterval(hookInterval);
+
+    }, 200);  // check every 200ms until ready
+  };
+};
+
+
     </script>
 
   </div>
