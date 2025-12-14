@@ -5,6 +5,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!modal || !modalBody) return;
 
+    function stopModalMedia() {
+        // Stop local HTML5 media
+        modalBody.querySelectorAll("video, audio").forEach((m) => {
+            try { m.pause(); } catch (e) {}
+            m.currentTime = 0;
+            m.src = "";      // extra hard stop (esp. Safari)
+            m.load?.();
+        });
+
+        // Stop YouTube/Vimeo iframes by resetting src
+        modalBody.querySelectorAll("iframe").forEach((f) => {
+            const src = f.getAttribute("src");
+            if (src) f.setAttribute("src", src);
+        });
+
+        // Optional: clear DOM so nothing can keep playing
+        modalBody.innerHTML = "";
+    }
+
+
     document.querySelectorAll('.filler-container').forEach(item => {
         const title = item.dataset.projectTitle || "project";
         const desc  = item.dataset.projectDesc  || "";
@@ -105,13 +125,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // close behaviors
-    closeBtn?.addEventListener('click', () => modal.close());
+    closeBtn?.addEventListener('click', () => {
+        stopModalMedia();
+        modal.close();
+    });
 
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.close();
+    if (e.target === modal) {
+        stopModalMedia();
+        modal.close();
+    }
     });
 
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.open) modal.close();
+    if (e.key === 'Escape' && modal.open) {
+        stopModalMedia();
+        modal.close();
+    }
     });
+
+    modal.addEventListener('close', stopModalMedia);
 });
