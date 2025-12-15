@@ -77,7 +77,6 @@
             <span id="logo-text" class="header centered-text">katie <3</span>
           </a>
         </div>
-        <p class = "centered-text" style = "padding-top: 150px;font-size:15px; color: white; z-index: 100000;">visit <a target = "_blank" href = https://katiem120598.github.io/flowJockey_draw/>https://katiem120598.github.io/flowJockey_draw/</a> to draw on another device</p>
       </navbarog>
     </div>
 
@@ -114,7 +113,7 @@ window.onload = function () {
   const displayIframe = document.getElementById("display-iframe");
 
   displayIframe.onload = function () {
-    console.log("Display iframe loaded — waiting for its JS to initialize...");
+    console.log("Display iframe loaded â€” waiting for its JS to initialize...");
 
     const fw = displayIframe.contentWindow;
 
@@ -133,8 +132,8 @@ window.onload = function () {
       const wrapped = function (...args) {
         orig.apply(fw.console, args);
 
-        if (args.join(" ").includes("✔ Playing 757 track")) {
-          console.warn("🔥 DETECTED TRACK EVENT");
+        if (args.join(" ").includes("âœ” Playing 757 track")) {
+          console.warn("ðŸ”¥ DETECTED TRACK EVENT");
           alert("found it!");
         }
       };
@@ -142,7 +141,7 @@ window.onload = function () {
 
       fw.console.log = wrapped;
 
-      console.log("🎉 Successfully hooked console.log inside iframe!");
+      console.log("ðŸŽ‰ Successfully hooked console.log inside iframe!");
       clearInterval(hookInterval);
 
     }, 200);  // check every 200ms until ready
